@@ -1,12 +1,13 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Search as SearchIcon, X } from "lucide-react";
 import { useZonePricing } from "@/hooks/useZonePricing";
 import { ProductCard } from "@/components/product/ProductCard";
 import { useZoneStore } from "@/store/zoneStore";
+import { useSearchStore } from "@/store/searchStore";
 
 export default function SearchPage() {
-  const [q, setQ] = useState("");
+  const { query: q, setQuery: setQ } = useSearchStore();
   const { data: products, isLoading } = useZonePricing("all");
   const zone = useZoneStore((s) => s.zone);
 
