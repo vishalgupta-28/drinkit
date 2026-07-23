@@ -1,12 +1,18 @@
 "use client";
-import { useState } from "react";
-import { MapPin, ChevronDown } from "lucide-react";
+import { useMemo, useState } from "react";
+import { MapPin, ChevronDown, Search, Check } from "lucide-react";
 import { useZoneStore } from "@/store/zoneStore";
-import { ZONES } from "@/lib/mock";
+import { ZONES, ZONE_SHOP } from "@/lib/mock";
 
 export function LocationBar() {
   const { zone, shopName, setZone, setShopName } = useZoneStore();
   const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+
+  const filtered = useMemo(() => {
+    const t = q.trim().toLowerCase();
+    return ZONES.filter((z) => !t || z.name.toLowerCase().includes(t) || z.city.toLowerCase().includes(t));
+  }, [q]);
 
   return (
     <div className="glass-primary relative text-white">
@@ -21,29 +27,50 @@ export function LocationBar() {
       </button>
 
       {open && (
-        <div className="glass absolute left-0 right-0 top-full z-40 border-t p-3 text-dark shadow-lg">
-          <div className="mx-auto max-w-5xl">
-            <p className="mb-2 text-xs font-semibold text-muted">Choose your zone (prices vary!)</p>
-            <div className="flex gap-2">
-              {ZONES.map((z) => (
-                <button
-                  key={z.slug}
-                  onClick={() => {
-                    setZone(z);
-                    setShopName(z.slug === "delhi" ? "Sharma Wines" : "Cyber Hub Liquor");
-                    setOpen(false);
-                  }}
-                  className={`flex-1 rounded border p-3 text-left text-sm font-semibold ${
-                    z.slug === zone.slug ? "border-primary bg-primary-light text-primary" : "border-gray-200"
-                  }`}
-                >
-                  {z.name}
-                  <span className="block text-xs font-normal text-muted">{z.city}</span>
-                </button>
-              ))}
+        <>
+          <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
+          <div className="glass absolute left-0 right-0 top-full z-40 border-t p-3 text-dark shadow-lg">
+            <div className="mx-auto max-w-5xl">
+              <p className="mb-2 text-xs font-semibold text-muted">
+                Select your city — prices &amp; stock vary by location
+              </p>
+              <div className="mb-3 flex items-center gap-2 rounded border border-gray-200 bg-white/70 px-3 py-2">
+                <Search size={15} className="text-muted" />
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder="Search city…"
+                  className="w-full bg-transparent text-sm outline-none"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {filtered.map((z) => {
+                  const active = z.slug === zone.slug;
+                  return (
+                    <button
+                      key={z.slug}
+                      onClick={() => {
+                        setZone(z);
+                        setShopName(ZONE_SHOP[z.slug] ?? "Local Store");
+                        setOpen(false);
+                        setQ("");
+                      }}
+                      className={`flex items-center justify-between rounded border p-3 text-left text-sm font-semibold ${
+                        active ? "border-primary bg-primary-light text-primary" : "border-gray-200 bg-white/60"
+                      }`}
+                    >
+                      <span>
+                        {z.name}
+                        <span className="block text-xs font-normal text-muted">{ZONE_SHOP[z.slug]}</span>
+                      </span>
+                      {active && <Check size={16} />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
