@@ -1,0 +1,212 @@
+# ─────────────────────────────────────────────────────────────
+# DrinkIt — Production compose
+# `make prod`  ->  docker compose up --build
+# ─────────────────────────────────────────────────────────────
+name: drinkit
+
+x-common-env: &common-env
+  DATABASE_URL: ${DATABASE_URL}
+  DATABASE_URL_ASYNC: ${DATABASE_URL_ASYNC}
+  REDIS_URL: ${REDIS_URL}
+  RABBITMQ_URL: ${RABBITMQ_URL}
+  JWT_SECRET: ${JWT_SECRET}
+  JWT_EXPIRY: ${JWT_EXPIRY}
+
+services:
+  # ── Infrastructure ─────────────────────────────────────────
+  postgres:
+    image: postgis/postgis:15-3.3
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [drinkit-network]
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [drinkit-network]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # Management UI
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    networks: [drinkit-network]
+
+  # ── Reverse proxy ──────────────────────────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/proxy_headers.conf:/etc/nginx/proxy_headers.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - api-gateway
+      - frontend
+    networks: [drinkit-network]
+
+  # ── Microservices ──────────────────────────────────────────
+  api-gateway:
+    build: ./services/api-gateway
+    environment:
+      <<: *common-env
+      PORT: 3000
+    ports: ["3000:3000"]
+    depends_on:
+      redis: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  auth-service:
+    build: ./services/auth-service
+    environment:
+      <<: *common-env
+      PORT: 8001
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_FROM_NUMBER: ${TWILIO_FROM_NUMBER}
+    ports: ["8001:8001"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  location-service:
+    build: ./services/location-service
+    environment:
+      <<: *common-env
+      PORT: 8002
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+    ports: ["8002:8002"]
+    depends_on:
+      postgres: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  shop-service:
+    build: ./services/shop-service
+    environment:
+      <<: *common-env
+      PORT: 8003
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+    ports: ["8003:8003"]
+    depends_on:
+      postgres: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  catalog-service:
+    build: ./services/catalog-service
+    environment:
+      <<: *common-env
+      PORT: 8004
+    ports: ["8004:8004"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  order-service:
+    build: ./services/order-service
+    environment:
+      <<: *common-env
+      PORT: 8005
+    ports: ["8005:8005"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  rider-service:
+    build: ./services/rider-service
+    environment:
+      <<: *common-env
+      PORT: 8006
+    ports: ["8006:8006"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  notification-service:
+    build: ./services/notification-service
+    environment:
+      <<: *common-env
+      PORT: 8007
+    ports: ["8007:8007"]
+    depends_on:
+      redis: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  payment-service:
+    build: ./services/payment-service
+    environment:
+      <<: *common-env
+      PORT: 8008
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET}
+    ports: ["8008:8008"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  analytics-service:
+    build: ./services/analytics-service
+    environment:
+      <<: *common-env
+      PORT: 8009
+    ports: ["8009:8009"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    networks: [drinkit-network]
+
+  frontend:
+    build: ./frontend
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      NEXT_PUBLIC_WS_URL: ${NEXT_PUBLIC_WS_URL}
+      NEXT_PUBLIC_GOOGLE_MAPS_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_KEY}
+    ports: ["3001:3001"]
+    depends_on:
+      - api-gateway
+    networks: [drinkit-network]
+
+volumes:
+  postgres-data:
+  redis-data:
+  rabbitmq-data:
+
+networks:
+  drinkit-network:
+    driver: bridge

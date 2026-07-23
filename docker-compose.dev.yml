@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────
+# DrinkIt — Dev overrides (hot reload + mounted source)
+# `make dev`  ->  docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# Only infra + a couple of services are hot-mounted here as an
+# example; extend per service as you flesh them out.
+# ─────────────────────────────────────────────────────────────
+name: drinkit
+
+services:
+  auth-service:
+    volumes:
+      - ./services/auth-service:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
+
+  location-service:
+    volumes:
+      - ./services/location-service:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8002", "--reload"]
+
+  shop-service:
+    volumes:
+      - ./services/shop-service:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8003", "--reload"]
+
+  catalog-service:
+    volumes:
+      - ./services/catalog-service:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8004", "--reload"]
+
+  payment-service:
+    volumes:
+      - ./services/payment-service:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8008", "--reload"]
+
+  analytics-service:
+    volumes:
+      - ./services/analytics-service:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8009", "--reload"]
+
+  api-gateway:
+    volumes:
+      - ./services/api-gateway/src:/app/src
+    command: ["npm", "run", "dev"]
+
+  order-service:
+    volumes:
+      - ./services/order-service/src:/app/src
+    command: ["npm", "run", "dev"]
+
+  rider-service:
+    volumes:
+      - ./services/rider-service/src:/app/src
+    command: ["npm", "run", "dev"]
+
+  notification-service:
+    volumes:
+      - ./services/notification-service/src:/app/src
+    command: ["npm", "run", "dev"]
+
+  frontend:
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: ["npm", "run", "dev"]

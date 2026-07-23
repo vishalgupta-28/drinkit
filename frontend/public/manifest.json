@@ -1,0 +1,13 @@
+{
+  "name": "DrinkIt",
+  "short_name": "DrinkIt",
+  "description": "Hyperlocal alcohol delivery in minutes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6F8",
+  "theme_color": "#0C831F",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
