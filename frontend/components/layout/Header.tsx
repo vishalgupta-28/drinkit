@@ -12,6 +12,7 @@ import { useUserStore } from "@/store/userStore";
 import { useUiStore } from "@/store/uiStore";
 import { useSearchStore } from "@/store/searchStore";
 import { useStoreStatus } from "@/hooks/useStoreStatus";
+import { Logo } from "@/components/brand/Logo";
 import { ZONES, ZONE_SHOP } from "@/lib/mock";
 import { formatINR } from "@/lib/utils";
 
@@ -63,9 +64,8 @@ export function Header() {
     <header ref={rootRef} className="glass sticky top-0 z-40 border-b border-white/50">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 md:gap-5">
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-1 text-2xl font-extrabold text-primary">
-          <span>🥃</span>
-          <span className="hidden sm:inline">DrinkIt</span>
+        <Link href="/" className="shrink-0" aria-label="DrinkIt home">
+          <Logo />
         </Link>
 
         {/* Location / store status */}
