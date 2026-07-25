@@ -25,8 +25,7 @@ async def list_products(
 
     Same product yields a DIFFERENT price per zone (Delhi vs Gurugram).
     """
-    sql = text(
-        """
+    base = """
         SELECT p.id, p.name, p.brand, p.category, p.volume_ml,
                p.image_url, p.pairs_with,
                zp.price, zp.mrp, zp.stock, zp.shop_id
@@ -34,11 +33,14 @@ async def list_products(
         JOIN zone_prices zp ON zp.product_id = p.id
         JOIN zones z ON z.id = zp.zone_id
         WHERE z.slug = :zone
-          AND (:category IS NULL OR p.category = :category)
-        ORDER BY p.name
-        """
-    )
-    rows = (await db.execute(sql, {"zone": zone, "category": category})).mappings().all()
+    """
+    params = {"zone": zone}
+    if category:
+        base += " AND p.category = :category"
+        params["category"] = category
+    base += " ORDER BY p.name"
+
+    rows = (await db.execute(text(base), params)).mappings().all()
     return [
         ProductOut(**{**row, "price": float(row["price"]),
                       "mrp": float(row["mrp"]) if row["mrp"] is not None else None,

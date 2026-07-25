@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUserStore } from "@/store/userStore";
+import bg from "@/stitch/alcohol-bottles-background/screen.png";
 
 export function AgeGate() {
   const ageVerified = useUserStore((s) => s.ageVerified);
@@ -17,37 +18,44 @@ export function AgeGate() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed inset-0 z-[200] flex items-center justify-center bg-dark/80 p-6 text-center backdrop-blur-md"
+        className="fixed inset-0 z-[200] flex items-end justify-center bg-dark p-0 text-center sm:items-center sm:p-6"
       >
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${bg.src})` }}
+        />
+        <div className="absolute inset-0 bg-dark/80" />
+
         <motion.div
-          initial={{ scale: 0.85, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="glass glass-sheen w-full max-w-sm rounded-2xl p-8 shadow-2xl"
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="glass relative z-10 w-full max-w-sm rounded-t-3xl p-8 shadow-2xl sm:rounded-3xl"
         >
           <div className="mb-4 text-5xl">🥃</div>
-          <h1 className="text-2xl font-extrabold text-primary">DrinkIt</h1>
+          <h1 className="text-2xl font-extrabold text-white">DrinkIt</h1>
           {rejected ? (
             <p className="mt-6 text-lg font-semibold text-danger">
               Sorry, come back when you&apos;re older 😅
             </p>
           ) : (
             <>
-              <p className="mt-2 text-lg font-semibold text-dark">Are you 21 or older?</p>
-              <p className="mt-1 text-sm text-muted">
-                You must be of legal drinking age to use DrinkIt.
+              <p className="mt-2 text-lg font-semibold text-white">Age Verification</p>
+              <p className="mt-1 text-sm text-white/70">
+                You must be 21 or older to enter. Please confirm your age.
               </p>
               <div className="mt-6 flex flex-col gap-3">
                 <button
                   onClick={verifyAge}
-                  className="w-full rounded bg-primary py-3 font-bold text-white active:scale-95"
+                  className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg active:scale-95"
                 >
                   Yes, I&apos;m 21+
                 </button>
                 <button
                   onClick={() => setRejected(true)}
-                  className="w-full rounded border border-danger py-3 font-bold text-danger active:scale-95"
+                  className="w-full rounded-xl border border-white/30 py-3.5 font-bold text-white active:scale-95"
                 >
-                  No
+                  No, I&apos;m under 21
                 </button>
               </div>
             </>

@@ -69,3 +69,13 @@ export async function login(input: { email: string; password: string }): Promise
     return { token: `local-${btoa(email)}`, email, name: u.name };
   }
 }
+
+export async function requestOtp(phone: string): Promise<{ sent: boolean; debug_otp?: string }> {
+  const { data } = await api.post("/auth/otp/request", { phone });
+  return data;
+}
+
+export async function verifyOtp(input: { phone: string; otp: string }): Promise<Session> {
+  const { data } = await api.post("/auth/otp/verify", { phone: input.phone, otp: input.otp });
+  return { token: data.access_token, email: input.phone, name: "Drinker" };
+}

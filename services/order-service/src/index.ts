@@ -3,6 +3,19 @@ import { z } from "zod";
 import amqp from "amqplib";
 
 const app = express();
+
+// Simple CORS for frontend dev
+app.use((_req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (_req.method === "OPTIONS") {
+    res.sendStatus(204);
+    return;
+  }
+  next();
+});
+
 app.use(express.json());
 const PORT = Number(process.env.PORT ?? 8005);
 const RABBIT = process.env.RABBITMQ_URL ?? "amqp://drinkit:drinkit_secret@rabbitmq:5672/";

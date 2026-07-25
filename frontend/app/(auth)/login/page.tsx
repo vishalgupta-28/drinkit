@@ -74,6 +74,12 @@ export default function LoginPage() {
           Create an account
         </Link>
       </p>
+      <p className="mt-2 text-center text-sm text-muted">
+        Or{" "}
+        <Link href="/phone" className="font-bold text-primary">
+          log in with phone
+        </Link>
+      </p>
     </div>
   );
 }
