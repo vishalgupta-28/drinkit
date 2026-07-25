@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DrinkIt - My Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "primary-light": "#E8F5E9",
+                        "background": "#f5fbee",
+                        "on-primary-fixed-variant": "#00530e",
+                        "surface-variant": "#dee5d8",
+                        "on-error": "#ffffff",
+                        "muted": "#6B7280",
+                        "on-tertiary-fixed-variant": "#45455b",
+                        "tertiary-container": "#706f87",
+                        "surface-bright": "#f5fbee",
+                        "surface-container-highest": "#dee5d8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#e2e0fc",
+                        "error-container": "#ffdad6",
+                        "gold-light": "#FFF8E1",
+                        "outline-variant": "#becab7",
+                        "on-secondary-fixed": "#241a00",
+                        "on-surface-variant": "#3f4a3c",
+                        "surface-container-low": "#eff6e9",
+                        "surface-container-high": "#e4eadd",
+                        "on-surface": "#171d15",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eaf0e3",
+                        "on-tertiary-container": "#f9f5ff",
+                        "tertiary-fixed-dim": "#c6c4df",
+                        "on-secondary-container": "#6e5400",
+                        "inverse-surface": "#2c322a",
+                        "surface-tint": "#006e16",
+                        "primary-fixed-dim": "#74dd6e",
+                        "surface": "#F4F6F8",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#fec70f",
+                        "on-primary-fixed": "#002203",
+                        "on-secondary-fixed-variant": "#594400",
+                        "tertiary": "#57566e",
+                        "secondary-fixed-dim": "#f4bf00",
+                        "secondary-fixed": "#ffdf93",
+                        "inverse-on-surface": "#ecf3e6",
+                        "danger": "#D32F2F",
+                        "inverse-primary": "#74dd6e",
+                        "on-background": "#171d15",
+                        "on-error-container": "#93000a",
+                        "secondary": "#765b00",
+                        "primary": "#006714",
+                        "on-primary-container": "#e0ffd7",
+                        "primary-fixed": "#8ffb87",
+                        "primary-container": "#0c831f",
+                        "outline": "#6f7a6a",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d6dccf",
+                        "on-tertiary-fixed": "#1a1a2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "price": ["Inter"],
+                        "body": ["Inter"],
+                        "badge": ["Inter"],
+                        "h3": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .bottom-sheet-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #dee5d8;
+            border-radius: 10px;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface">
+<!-- Background Layer (Simulated Home Screen Screen_4) -->
+<div class="fixed inset-0 overflow-hidden">
+<div class="absolute inset-0 bg-[url('placeholder')] bg-cover bg-center opacity-90" data-alt="A vibrant and premium mobile home screen for a liquor delivery app called DrinkIt. The interface shows a grid of high-quality alcohol bottles including whiskey, wine, and beer. The design uses a sophisticated palette of deep greens and creamy whites. Bright lighting and a modern aesthetic with clear typography and rounded cards.">
+</div>
+<div class="absolute inset-0 bottom-sheet-overlay"></div>
+</div>
+<!-- Bottom Sheet Container -->
+<div class="fixed inset-x-0 bottom-0 z-50 flex items-end justify-center pointer-events-none">
+<div class="w-full max-w-2xl h-[795px] bg-surface-container-lowest rounded-t-[24px] flex flex-col pointer-events-auto custom-shadow animate-slide-up">
+<!-- Drag Handle -->
+<div class="flex justify-center pt-3 pb-2">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Header -->
+<div class="px-margin-mobile flex justify-between items-center py-4 border-b border-surface-variant">
+<h1 class="font-h2 text-h2 text-on-tertiary-fixed">My Cart</h1>
+<span class="font-body text-muted">3 items</span>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto custom-scroll px-margin-mobile py-lg">
+<!-- Shop Details -->
+<div class="flex justify-between items-center mb-lg bg-surface-container-low p-4 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="text-h3 font-h3 text-on-tertiary-fixed">Sharma Wine Shop</span>
+<span class="text-xl">🏪</span>
+</div>
+<div class="flex items-center gap-1 text-muted font-body">
+<span>28 min</span>
+<span>⏱</span>
+</div>
+</div>
+<!-- Cart Items List -->
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A premium 750ml bottle of Johnnie Walker Red Label Scotch Whisky against a clean, minimal white background with soft studio lighting. High-end product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe3kpxhjua0LvGIc4T2Sk3KP-fxaIXoDVg2pgM-zQ34RIF_9zUN-Rj1snHUpwsfOlbhXP35VJ_D5T-EDQ96QJ1awXBbgRsRrxBnRkFHT6OImstaW0rW7jPbty9QetWoYQwSl7DKB87Yr9qpigPEwsCUo84ZnOCuuCzAQeaS8V3QSYpq2dL7uDSDv4Nbw3IuqyvK-KxQ3MO-W89vD6x7k2a8iQtWIkUN5ya2En3XGrx2SnN6DF8wrr9iI-ii5SQsPoOubmGRbx_VYA"/>
+</div>
+<div class="flex-1">
+<h3 class="font-h3 text-[15px] text-on-tertiary-fixed leading-tight">Johnnie Walker Red Label 750ml</h3>
+<p class="font-price text-primary">₹1,800</p>
+</div>
+<div class="flex items-center bg-surface-container-high rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center text-primary-container hover:bg-surface-variant rounded transition-colors active:scale-90">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="px-3 font-h3 text-on-surface">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary-container hover:bg-surface-variant rounded transition-colors active:scale-90">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A pack of six 330ml Heineken Premium Lager beer cans arranged neatly. The metallic green of the cans reflects soft lighting on a white surface. Sharp focus and commercial quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnAOz4M7f5VHxFJF1JKIEvqHzzE_RPDBFNEyTO8awgUNGFOisRcAAq_dESEmfcRPH8a32Su8QpvzS54ztsz9D1he1No3qiwmnW2iEcAGu7bqhqNyryPlvSgzWWBlTpkS4D6faqq7mHIqebU3UOaZ7FfQVBZpg9A4WN5XzBVHOe-iJ2qJpsuVgi6FVyvBktXVPNgUG_4fHOoR1zH0I7RESbVgOJTqxMbBACets71Rmlgoir9RMDyKbHx1bwOoL14OuRg97iC0jn0EM"/>
+</div>
+<div class="flex-1">
+<h3 class="font-h3 text-[15px] text-on-tertiary-fixed leading-tight">Heineken Premium Lager 330ml (Pack of 6)</h3>
+<p class="font-price text-primary">₹1,200</p>
+</div>
+<div class="flex items-center bg-surface-container-high rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center text-primary-container hover:bg-surface-variant rounded transition-colors active:scale-90">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="px-3 font-h3 text-on-surface">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary-container hover:bg-surface-variant rounded transition-colors active:scale-90">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A 330ml bottle of Hoegaarden Witbier featuring its iconic hexagonal shape and light blue label. Studio lighting captures the condensation on the glass against a bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCKcwlUtfVnpXuBzR5BF6eroo--KnCa0sYzeK8eHtKjX_ScsrtY5Eg0EciiLJySltjaYLIZ6e0GPs9cLMP_xVR_2urBOy6ofng66q8CfMwd1cfwN-uh5o-j2I170eYNrK20o98MLSR3YQzbXqcVKVDHLM--ZTH6lCmxq4zNvRobcQk-pH4tMzjEF1bpyV4ounMWGlWcZJhLG9o8B4JkfPX_OSp5JTmiBv7Sk3JoCve0C2cf7EcI-v9s2j6m8fr07qh9r1NuPZqSwg"/>
+</div>
+<div class="flex-1">
+<h3 class="font-h3 text-[15px] text-on-tertiary-fixed leading-tight">Hoegaarden Witbier 330ml</h3>
+<p class="font-price text-primary">₹1,200</p>
+</div>
+<div class="flex items-center bg-surface-container-high rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center text-primary-container hover:bg-surface-variant rounded transition-colors active:scale-90">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<span class="px-3 font-h3 text-on-surface">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary-container hover:bg-surface-variant rounded transition-colors active:scale-90">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- DrinkPoints Box -->
+<div class="mt-xl p-4 border-2 border-secondary-container bg-gold-light rounded-xl">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="text-xl">🪙</span>
+<p class="font-body text-on-secondary-fixed text-sm">You'll earn <span class="font-bold">240 DrinkPoints</span> on this order</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-secondary-fixed">
+<span class="font-h3 text-sm text-on-secondary-fixed">Use 500 pts → Save ₹50</span>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Promo Code -->
+<div class="mt-lg">
+<div class="relative flex items-center">
+<input class="w-full h-14 pl-4 pr-24 border border-outline rounded-xl focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Apply Promo Code" type="text"/>
+<button class="absolute right-2 h-10 px-6 bg-primary text-on-primary rounded-lg font-h3 text-sm hover:bg-primary-container transition-colors active:scale-95">
+                            Apply
+                        </button>
+</div>
+</div>
+<!-- Order Summary -->
+<div class="mt-xl space-y-3 pb-8">
+<div class="flex justify-between items-center font-body text-on-surface-variant">
+<span>Subtotal</span>
+<span>₹4,200</span>
+</div>
+<div class="flex justify-between items-center font-body text-on-surface-variant">
+<span>Delivery Fee</span>
+<span class="text-primary font-bold">₹30</span>
+</div>
+<div class="flex justify-between items-center font-body text-on-surface-variant">
+<span>Taxes &amp; Charges</span>
+<span>₹120</span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant">
+<span class="font-h2 text-on-tertiary-fixed">Total</span>
+<span class="font-h1 text-primary text-[24px]">₹4,350</span>
+</div>
+</div>
+</div>
+<!-- Checkout CTA & Footer -->
+<div class="px-margin-mobile py-4 border-t border-surface-variant bg-surface-container-lowest pb-safe">
+<button class="w-full h-14 bg-primary text-on-primary font-h2 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-[0.98] custom-shadow">
+                    Place Order
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="mt-4 flex flex-col items-center gap-2">
+<div class="flex items-center gap-1 font-caption text-muted uppercase tracking-wider text-[10px]">
+<span class="material-symbols-outlined text-[14px]">credit_card</span>
+                        Pay with UPI · Cards · COD
+                    </div>
+<div class="flex items-center gap-4 opacity-60 grayscale scale-90">
+<!-- Simulated Payment Icons -->
+<div class="h-4 w-auto flex items-center gap-3">
+<span class="font-bold text-[10px]">RAZORPAY</span>
+<span class="font-bold text-[10px]">UPI</span>
+<span class="font-bold text-[10px]">VISA</span>
+<span class="font-bold text-[10px]">MASTERCARD</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scripts for micro-interactions -->
+<script>
+        // Simple scale interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.97)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+
+        // Close logic simulation (clicking overlay)
+        document.querySelector('.bottom-sheet-overlay').addEventListener('click', () => {
+            document.querySelector('.animate-slide-up').style.transform = 'translateY(100%)';
+            document.querySelector('.animate-slide-up').style.transition = 'transform 0.3s ease-in';
+            setTimeout(() => {
+                alert('Closing cart - Simulation only');
+            }, 300);
+        });
+    </script>
+<style>
+        @keyframes slide-up {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</body></html>

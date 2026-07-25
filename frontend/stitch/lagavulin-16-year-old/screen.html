@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        .bento-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+        /* Custom scrollbar for horizontal lists */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "error": "#ba1a1a",
+                "on-primary-fixed": "#002203",
+                "secondary-container": "#fec70f",
+                "surface-tint": "#006e16",
+                "secondary-fixed": "#ffdf93",
+                "tertiary-fixed": "#e2e0fc",
+                "tertiary-fixed-dim": "#c6c4df",
+                "primary": "#006714",
+                "on-primary-fixed-variant": "#00530e",
+                "inverse-surface": "#2c322a",
+                "secondary-fixed-dim": "#f4bf00",
+                "surface-bright": "#f5fbee",
+                "inverse-on-surface": "#ecf3e6",
+                "secondary": "#765b00",
+                "background": "#f5fbee",
+                "danger": "#D32F2F",
+                "surface-container-highest": "#dee5d8",
+                "on-secondary": "#ffffff",
+                "surface-container-high": "#e4eadd",
+                "primary-container": "#0c831f",
+                "surface-dim": "#d6dccf",
+                "surface": "#F4F6F8",
+                "on-tertiary-fixed-variant": "#45455b",
+                "tertiary": "#57566e",
+                "on-secondary-fixed-variant": "#594400",
+                "surface-variant": "#dee5d8",
+                "primary-fixed": "#8ffb87",
+                "outline": "#6f7a6a",
+                "on-secondary-container": "#6e5400",
+                "on-surface": "#171d15",
+                "gold-light": "#FFF8E1",
+                "outline-variant": "#becab7",
+                "error-container": "#ffdad6",
+                "primary-light": "#E8F5E9",
+                "on-background": "#171d15",
+                "on-error": "#ffffff",
+                "surface-container": "#eaf0e3",
+                "primary-fixed-dim": "#74dd6e",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-container": "#e0ffd7",
+                "on-secondary-fixed": "#241a00",
+                "on-tertiary-fixed": "#1a1a2e",
+                "surface-container-low": "#eff6e9",
+                "on-tertiary-container": "#f9f5ff",
+                "on-primary": "#ffffff",
+                "inverse-primary": "#74dd6e",
+                "on-error-container": "#93000a",
+                "on-surface-variant": "#3f4a3c",
+                "muted": "#6B7280",
+                "tertiary-container": "#706f87",
+                "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "lg": "24px",
+                "md": "16px",
+                "margin-mobile": "16px",
+                "margin-desktop": "40px",
+                "sm": "8px",
+                "gutter": "16px",
+                "xl": "32px",
+                "base": "8px",
+                "xs": "4px"
+              },
+              "fontFamily": {
+                "badge": ["Inter"], "h3": ["Inter"], "h2": ["Inter"], "body": ["Inter"], "price": ["Inter"], "caption": ["Inter"], "h1": ["Inter"]
+              },
+              "fontSize": {
+                "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "h2": ["22px", {"lineHeight": "28px", "fontWeight": "28px"}],
+                "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky bg-surface-container-low dark:bg-inverse-surface shadow-sm z-50">
+<nav class="flex justify-between items-center px-margin-desktop py-md max-w-7xl mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-h2 text-h2 font-black text-primary dark:text-primary-fixed">DrinkIt</span>
+<div class="hidden md:flex gap-lg items-center">
+<a class="font-body text-body text-primary font-bold border-b-2 border-primary pb-1" href="#">Whisky</a>
+<a class="font-body text-body text-on-surface-variant hover:text-primary transition-colors" href="#">Beer</a>
+<a class="font-body text-body text-on-surface-variant hover:text-primary transition-colors" href="#">Wine</a>
+<a class="font-body text-body text-on-surface-variant hover:text-primary transition-colors" href="#">Offers</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex bg-surface-container rounded-full px-md py-sm items-center gap-sm w-64">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body w-full" placeholder="Search spirits..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface p-sm hover:bg-surface-variant rounded-full transition-all">location_on</button>
+<button class="material-symbols-outlined text-on-surface p-sm hover:bg-surface-variant rounded-full transition-all">account_circle</button>
+<button class="flex items-center gap-sm bg-primary text-on-primary px-md py-sm rounded-full font-bold hover:bg-primary-container transition-all cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-caption">Cart</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-sm mb-lg text-on-surface-variant">
+<span class="text-caption hover:text-primary cursor-pointer">Home</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-caption hover:text-primary cursor-pointer">Whisky</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-caption text-primary font-semibold">Lagavulin 16 Year Old</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+<!-- Left: Image Showcase (Asymmetric Bento) -->
+<div class="md:col-span-7 grid grid-cols-4 gap-md h-fit">
+<div class="col-span-4 rounded-xl overflow-hidden bg-surface-container-lowest shadow-md aspect-[4/5] relative group">
+<img class="w-full h-full object-contain p-xl transform group-hover:scale-105 transition-transform duration-700" data-alt="A premium high-resolution studio shot of a Lagavulin 16 Year Old Single Malt Whisky bottle. The bottle is backlit with warm amber lighting, emphasizing the deep gold liquid inside. It sits on a dark, wet slate surface with subtle wisps of real smoke curling around the base. The background is a moody, dark Islay coastline at dusk. The overall aesthetic is luxurious, corporate modern, and highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgNCOX99J9t3BjOgozWHO86EbnkK9HbfqbrtxLEqLiRvJ46I-_LjYWGWXgLqMZSCSxlPVaWfRlyj7bULnTLXGVLr5E9fgwPBhpfs7lgnxgFj0N6hwec_WM5IFQjYgsgheDKrYvZpp1zJ-tC83nI8pPwYLqMhXMbRF2ECVP7mXfa4UoAUiBX2YlVS7SRas5HvCzIVg2vQESIS_A0TiuB6cYG_0huMpVijByE4LDzZu2wwa4LKIYfGbwNRUMA94y3BgjXBI8H0r5OuY"/>
+<div class="absolute top-md left-md bg-secondary text-on-secondary px-md py-xs rounded-lg font-badge text-badge">Bestseller</div>
+</div>
+<div class="col-span-1 aspect-square rounded-xl bg-surface-container shadow-sm overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img class="w-full h-full object-cover" data-alt="Close up detail of the Lagavulin 16 Year Old bottle label, showing the classic typography and the crest of the Islay distillery. Soft, warm natural light highlights the texture of the paper label. Premium beverage photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL3NOmM_8EOdexpMMOm1WSPF6CnhtzpfsrmF_BV6WiRo5aOdtH_kkLDRv8X7Pr4zXgsKth3O9NYNr0TEyayBX91HBQuAr3qwZILElnVk4Kj-k7tbfp8QjCFFQj2HdazD_k5epXMXxKNu1_KQC4EC70QItet60e5eWmZqILCKsF6g3v5Z8QY3-yi6qCbYOvHQzWSzE12bDvSHJlL8ufw0-hacjNY8dx8NGAo9wbNE-ilJoBar10BhQc57yJOF4usD-vyGY-ViJrvxE"/>
+</div>
+<div class="col-span-1 aspect-square rounded-xl bg-surface-container shadow-sm overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img class="w-full h-full object-cover" data-alt="Whisky being poured into a heavy crystal glass, with a single large clear ice sphere. The liquid is a vibrant golden amber, catching the light with beautiful caustics. Professional lifestyle photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzLcGikZgj7McVg5Ad5NoMWrF4amwLGKN62pzYwQQxuriaPSLaSudEr5fr2yGQ_kKGp3o9cF5E2vbbAVNfdUdHntF1oHHAQMQcoHbXTLcZbJS_E30wtt6nrn-GHTY3f6pCyDv6bSPS11wfb3oIcQ17v5LMhHGOgByehjvrk1SbmOFGo0ap9gQop8HWgT4pyjowm_4QK7SHO7JgDhqnTAkIg1lS_tpOQofeQkI6LwwwRFwISI4EQ4zrKYrl2FgaqvwoOLb3FTQyVvc"/>
+</div>
+<div class="col-span-2 aspect-[2/1] rounded-xl bg-surface-container shadow-sm overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all relative">
+<img class="w-full h-full object-cover" data-alt="An atmospheric shot of the Lagavulin distillery warehouses on the edge of the sea in Islay, Scotland. Moody grey skies and splashing white waves against the dark stone walls. Cinematic landscape style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk3OAKUpS4_r7PnS7fxRDvbbaSduUQP0zqBvo5FOPDioUby3PaD4Iqjiw5aA6g7AYr4C2FHyj573zJuduNKNeaOcZoFaCS1P4lF0an9ELMgKrSVlOOElEVGnxtfEguNTZcXTnyLPgYLY6VZAspdgayOBkuRmz6v71Y766v0nfjXnjGvf8BaZvBeqOuY-T8v43EnoqlZLVU6hy84-fVDyR1SMgSQ_85aM7ssfLV8dtJP2W8jqBkA1R3sjE67rLlRgB8IhYiSdJ5qAY"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<span class="text-white font-bold">+4 More</span>
+</div>
+</div>
+</div>
+<!-- Right: Product Details -->
+<div class="md:col-span-5 flex flex-col gap-lg sticky top-32 h-fit">
+<div>
+<span class="font-caption text-caption text-primary uppercase tracking-widest font-bold">Islay Single Malt</span>
+<h1 class="font-h1 text-h1 text-on-surface mt-xs leading-tight">Lagavulin 16 Year Old Single Malt</h1>
+<div class="flex items-center gap-sm mt-md">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<span class="text-caption text-on-surface-variant">(4.8 • 1,240 Reviews)</span>
+</div>
+</div>
+<!-- Tasting Notes Bento -->
+<div class="grid grid-cols-3 gap-md">
+<div class="bg-surface-container-low p-md rounded-xl text-center bento-card">
+<span class="material-symbols-outlined text-primary mb-xs">air</span>
+<p class="font-bold text-caption">Smoke</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl text-center bento-card">
+<span class="material-symbols-outlined text-primary mb-xs">waves</span>
+<p class="font-bold text-caption">Sea Salt</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl text-center bento-card">
+<span class="material-symbols-outlined text-primary mb-xs">forest</span>
+<p class="font-bold text-caption">Oak</p>
+</div>
+</div>
+<!-- Price Section -->
+<div class="bg-white p-xl rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<div>
+<span class="text-on-surface-variant line-through text-caption">₹9,400</span>
+<div class="font-price text-[32px] text-on-surface">₹9,200 <span class="text-caption font-normal text-on-surface-variant">/ 750ml</span></div>
+</div>
+<div class="bg-primary-light text-primary font-bold px-md py-sm rounded-lg text-caption">
+                            Save ₹200 with DrinkPoints
+                        </div>
+</div>
+<!-- Add to Cart CTA -->
+<div class="flex flex-col gap-sm">
+<button class="w-full h-[56px] bg-primary text-white font-bold rounded-xl text-h3 flex items-center justify-center gap-md hover:bg-primary-container transition-all active:scale-95">
+<span class="material-symbols-outlined">shopping_basket</span>
+                            Add to Cart
+                        </button>
+<div class="flex items-center justify-center gap-xl text-caption text-on-surface-variant mt-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                                20 min delivery
+                            </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                                100% Genuine
+                            </div>
+</div>
+</div>
+</div>
+<!-- Delivery Details -->
+<div class="bg-surface-container-high rounded-xl p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<div>
+<p class="text-caption font-bold">Delivery to Gurgaon</p>
+<p class="text-[10px] text-on-surface-variant">Available for instant delivery</p>
+</div>
+</div>
+<button class="text-primary font-bold text-caption underline">Change</button>
+</div>
+</div>
+</div>
+<!-- About the Distillery Section -->
+<section class="mt-xl py-xl border-t border-outline-variant/20">
+<h2 class="font-h1 text-h1 mb-lg text-on-surface">About the Distillery</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="space-y-md">
+<p class="text-body leading-relaxed text-on-surface-variant">
+                        Lagavulin is perhaps the most iconic of all Islay whiskies. Founded in 1816, the distillery is nestled in a small bay guarded by the ruins of Dunyvaig Castle. It is renowned for its slow distillation process and its pear-shaped stills, which contribute to the deep, complex peat smoke and rich, fruity sweetness that has made the 16 Year Old a benchmark for single malt enthusiasts worldwide.
+                    </p>
+<div class="flex gap-lg">
+<div class="flex flex-col">
+<span class="font-bold text-primary">1816</span>
+<span class="text-caption">Founded</span>
+</div>
+<div class="w-px bg-outline-variant h-full"></div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Islay</span>
+<span class="text-caption">Region</span>
+</div>
+<div class="w-px bg-outline-variant h-full"></div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Intense</span>
+<span class="text-caption">Character</span>
+</div>
+</div>
+<button class="text-primary font-bold flex items-center gap-sm mt-md group">
+                        Explore Lagavulin Collection
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="rounded-2xl overflow-hidden shadow-xl aspect-video relative group">
+<img class="w-full h-full object-cover" data-alt="A cinematic drone shot of the Lagavulin Distillery on the rocky Islay coast. The iconic white buildings with 'LAGAVULIN' painted in large black letters face the cold Atlantic ocean. Mist clings to the surrounding green hills, and the lighting is soft, overcast, and evocative of the Scottish Highlands. Premium travel and architecture photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOGHKVhJQZEmYqjI7_0e6MoK1CrXAoIEF5LCXFfO0FFin0U1_ninzdLvIk8YTHs86w4O3DdNsEpBX0X8cVOhRY5-Eg4u6M5ZdqXXGucAmLyfy-HWXK7NVhb1WADDKdn9OSEuk-oEQqrd9BWSDE1X-a8G-5UvUimtumhFj_Xh_LCmQMCK3YCF6Uyk4G5IoygytxvAM6C8PIZVeCDcjHE8Zguqlzrthd_kLTfadKOqrJzcqis_8G3axCBVQ3xWW0S8mrmBdJKJnVuHI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-lg">
+<p class="text-white text-caption italic">"The definitive Islay malt—intense, smoky and rich."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Perfect Mixers / Cross-sell -->
+<section class="mt-xl py-xl">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Perfect Mixers</h2>
+<p class="text-on-surface-variant text-body">Elevate your whisky experience with these pairings.</p>
+</div>
+<button class="bg-surface-container-high px-md py-sm rounded-full text-caption font-bold hover:bg-outline-variant transition-all">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Item 1 -->
+<div class="bg-white rounded-xl p-md shadow-sm border border-outline-variant/20 bento-card flex flex-col gap-sm">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-contain p-md" data-alt="A premium 200ml glass bottle of Fever-Tree Premium Ginger Ale. The bottle is sweating with cold condensation droplets. High-end food photography, clean white background, vibrant and refreshing aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAm_pHnjREov15Es_dqHHN-RufJe4Dawb1Gspz0ZdC-rODkUIrhlVZXEa-G65feAE8EsmpBoGO-oU-9m0-3wLw1EkG0EqQfWca3xGe17UqvvfoUX8ETxpLxCz4N5Lv7afrQw0wleBEcVr3YTMVyJe8a-uMYyNFq4rrdZcixdjslAZPInrJoBTURL5pFRqee0WqX63Va5Z6Ut7xDDosKvPlVNjkBevKZkhgGrHIms2kXV8sKlG0mGC5jPHWDyvTFkTjWgr7-NvDK3Q"/>
+<button class="absolute top-sm right-sm w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-h3 text-[14px]">Fever-Tree Ginger Ale</h3>
+<p class="text-caption text-on-surface-variant">200ml</p>
+<p class="font-price text-primary mt-xs">₹150</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-white rounded-xl p-md shadow-sm border border-outline-variant/20 bento-card flex flex-col gap-sm">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-contain p-md" data-alt="A high-quality square crystal whisky decanter and matching rocks glasses set. The crystal is cut in a sophisticated diamond pattern that reflects light brilliantly. Minimalist, premium lifestyle product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPMoaAKye7BVa3dwIoB9Krw8Las0qgGyskFztMCFpkYbkhQTjgtxnOsevMoeIt0kYhZlPaGh-vveifGpORt_Nc5UiggvIW6IhHzGFwpmY5K_yIoNxkxv8XPSJv-Yx_s0i5ooSVMDWK9QJk1r_3eFumnydgeIbw2vbTCONVWYPOsGutdvZ6s32eNrQcdD81rwT4c-jiVu_O8WD1RL4jo1gkSKU4jOd3b4qmm_TmbONIKYtve9EjUr8C6KlhY6Bpkh5zmajHjlq0zhk"/>
+<button class="absolute top-sm right-sm w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-h3 text-[14px]">Crystal Rocks Glass Set</h3>
+<p class="text-caption text-on-surface-variant">Set of 2</p>
+<p class="font-price text-primary mt-xs">₹2,400</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-white rounded-xl p-md shadow-sm border border-outline-variant/20 bento-card flex flex-col gap-sm">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-contain p-md" data-alt="Premium large clear ice sphere mold and the resulting crystal clear ice ball. A single sprig of mint is frozen inside for a gourmet touch. Bright, high-key studio lighting, modern clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkVKuKAnIwP-fC0xexg2e0D_LAIuZX4m2PFjgW2qbOP082rutChUr7C-NO6N-B3hVg4XjK5EXa2tgiwFyp5ThklpAMrGC8_Pks4uIL2SIysrwszPi4rvWfVGJJ1mnJUfGygT-skCttsJG0d_GLtR-RCaqNv6-69lG3C8TWNOeOzEB31jBYEy46rsLXhXtnIXOPzatBX0mfntuxjHzfx0C6xWOsQZEFRQd_Drs6GUmvKtsd6zmvlERcI_GUIaIDVZx1dCvqRVug5aI"/>
+<button class="absolute top-sm right-sm w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-h3 text-[14px]">Slow-Melt Ice Spheres</h3>
+<p class="text-caption text-on-surface-variant">Pack of 4</p>
+<p class="font-price text-primary mt-xs">₹850</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-white rounded-xl p-md shadow-sm border border-outline-variant/20 bento-card flex flex-col gap-sm">
+<div class="aspect-square bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-contain p-md" data-alt="A dark chocolate bar with 85% cocoa, specifically curated for whisky pairing. The packaging is elegant with gold foil lettering. Professional culinary photography, rich textures, moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQN0k4psTsago2mTO9S39P2XM9ncEzb_cCQQS4NqGbCAbDNPmM7hK4TNh4c5kR-bsVAZOZeM_GBNBko2ctz5qGVbMHZMVfiwOI9-UuP9sIK_7dgkNsyMC5jxQe0Xb84Z6Bslw2FJq-Z6oH_s7ziWESEeOHwA5joGGdoVRYWpnyI5vD1cGx98HhttlNjvNBWGSk1mVqhm6L6niTvVL0kfB6ObG8QM8P_bJZdxQRguoPvFr9Sj7iiMqWAkOFGN9bzQ0OJJyFw7cuhDc"/>
+<button class="absolute top-sm right-sm w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-h3 text-[14px]">85% Dark Cocoa Bar</h3>
+<p class="text-caption text-on-surface-variant">100g</p>
+<p class="font-price text-primary mt-xs">₹450</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-xl bg-surface-container-highest border-t border-outline-variant">
+<div class="flex flex-col items-center gap-md py-xl px-margin-desktop w-full max-w-7xl mx-auto">
+<span class="font-h3 text-h3 font-bold text-primary">DrinkIt</span>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Delivery Areas</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<div class="flex gap-md opacity-60 grayscale hover:grayscale-0 transition-all">
+<img class="h-6" data-alt="Visa and Mastercard secure payment badges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4vMiern4GBGQZEyiFHU4zGLyceBSZSoFlRmROLbflxdec5Xqa5L70dwoDVeaBX_ziDecFocDZ5IeT1IdTNbEm0kWLXP-hWflTreUOkwAEfG-4FmCKtfiPxAdgaQrlx_7vRieoLWRb1IWoHPJkcpSOScfty1hBpWJc0CxY-VhQ-0L2AF4hwCr5YrTfFS5Opa-p02O3C4rg1JDM7AVKRHgDT9GvORfezTwwCIo_sUDvswWAgqP7d01PTAnAJQVQwV0g_ZHrSPWb_K4"/>
+<img class="h-6" data-alt="FSSAI food safety certification logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbJZrvvJM7ntiVlKOBoQx2E43JGRC1DN-cpa_lzBn4yulST5m96Ib5qtToy_t2G8tgKabXADiDBRi47FjadrP_0Lbz4wGYU9nB2KTPK7rzwu1tooXiQBf_3gaHjj7-ck5xh1QWCSzYpzgGlUM0WMLAUDbQv2g3yHBQeLctAm2EjrflWzlC0RDlTQ6QMCEFjhj4L9de4dsUSd4JAt_0DUYuyJVTqMxOIzZuVM9Zgi30clmBBcGyTgc4M9mYjR4QkQUiNn28KjjqJLw"/>
+<img class="h-6" data-alt="Drink Responsibly awareness logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp2lkABOo0lv2hUe7rQc3LNAjku2kf-OdHa9uqXBtsn-TtuEB2N2DzBPdhx2c3McIvUCQ8tig7Bmz5dtOj8-0bOWia5whlJ-RaKShIo0NWv24aLOWibE5HYKzM2HFgRyvTBchRDZzf-zCG7RzmP--NmptK-ZRRZ2143m3Bn6uLZ-pywqJeBokjb_9MpITeuIHWzU0PmNkPUVLgyzpDLPz6700Ctf5-vXk86awkJDDb17WHtW07ZRXnbAI1KX9sPev8_FbdHEb-V90"/>
+</div>
+<p class="font-caption text-caption text-on-surface-variant text-center max-w-lg mt-md">
+                © 2024 DrinkIt Technologies. Please drink responsibly. Our delivery partners are trained in age verification protocols.
+            </p>
+</div>
+</footer>
+<!-- Mobile Bottom Navigation -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface shadow-[0_-2px_10px_rgba(0,0,0,0.05)] px-md py-sm flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">liquor</span>
+<span class="text-[10px]">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px]">Wishlist</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px]">Profile</span>
+</button>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.active\\:scale-95').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

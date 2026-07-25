@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>DrinkIt - Splash Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary": "#765b00",
+                "on-primary-fixed-variant": "#00530e",
+                "background": "#f5fbee",
+                "surface-bright": "#f5fbee",
+                "inverse-on-surface": "#ecf3e6",
+                "primary-fixed-dim": "#74dd6e",
+                "tertiary-container": "#706f87",
+                "on-tertiary-fixed-variant": "#45455b",
+                "muted": "#6B7280",
+                "secondary-container": "#fec70f",
+                "on-secondary-fixed": "#241a00",
+                "on-error": "#ffffff",
+                "on-tertiary-container": "#f9f5ff",
+                "surface-tint": "#006e16",
+                "on-primary": "#ffffff",
+                "danger": "#D32F2F",
+                "surface-container-low": "#eff6e9",
+                "on-surface": "#171d15",
+                "inverse-primary": "#74dd6e",
+                "primary-light": "#E8F5E9",
+                "surface-container": "#eaf0e3",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#002203",
+                "secondary-fixed": "#ffdf93",
+                "on-primary-container": "#e0ffd7",
+                "on-tertiary-fixed": "#1a1a2e",
+                "surface": "#F4F6F8",
+                "outline": "#6f7a6a",
+                "surface-container-high": "#e4eadd",
+                "on-secondary-fixed-variant": "#594400",
+                "error": "#ba1a1a",
+                "surface-container-highest": "#dee5d8",
+                "surface-variant": "#dee5d8",
+                "primary": "#006714",
+                "on-surface-variant": "#3f4a3c",
+                "on-tertiary": "#ffffff",
+                "gold-light": "#FFF8E1",
+                "outline-variant": "#becab7",
+                "tertiary-fixed-dim": "#c6c4df",
+                "tertiary": "#57566e",
+                "secondary-fixed-dim": "#f4bf00",
+                "inverse-surface": "#2c322a",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-container": "#6e5400",
+                "on-error-container": "#93000a",
+                "on-background": "#171d15",
+                "primary-fixed": "#8ffb87",
+                "surface-dim": "#d6dccf",
+                "error-container": "#ffdad6",
+                "tertiary-fixed": "#e2e0fc",
+                "primary-container": "#0c831f"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "lg": "24px",
+                "xl": "32px",
+                "sm": "8px",
+                "xs": "4px",
+                "gutter": "16px",
+                "md": "16px",
+                "margin-desktop": "40px",
+                "base": "8px"
+            },
+            "fontFamily": {
+                "badge": ["Inter"],
+                "caption": ["Inter"],
+                "body": ["Inter"],
+                "h2": ["Inter"],
+                "price": ["Inter"],
+                "h1": ["Inter"],
+                "h3": ["Inter"]
+            },
+            "fontSize": {
+                "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1A1A2E; /* Exact Brand Anchor Match */
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .loading-track {
+            height: 4px;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 99px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: #0C831F; /* Exact Brand Anchor Match */
+            width: 0%;
+            border-radius: 99px;
+            animation: loadingProgress 3.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            20% { width: 10%; }
+            40% { width: 60%; }
+            70% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-glow {
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col items-center justify-between min-h-screen">
+<!-- Background Atmospheric Element (Optional WebGL/Shader could go here) -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-20">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary blur-[120px]"></div>
+</div>
+<!-- Main Content Container (Centered) -->
+<main class="flex-grow flex flex-col items-center justify-center z-10 px-margin-mobile">
+<div class="fade-in flex flex-col items-center text-center space-y-6">
+<!-- Icon -->
+<div class="glass-glow mb-2">
+<span class="material-symbols-outlined text-[80px] text-white select-none" style="font-variation-settings: 'FILL' 1, 'wght' 300;">
+                    wine_bar
+                </span>
+</div>
+<!-- Brand Wordmark -->
+<div class="flex flex-col items-center gap-1">
+<h1 class="font-h1 text-h1 text-white tracking-tighter" style="font-size: 32px;">
+                    DrinkIt
+                </h1>
+<p class="font-body text-body text-white/60 tracking-wide mt-1">
+                    Alcohol delivered in 30 min
+                </p>
+</div>
+</div>
+</main>
+<!-- Bottom Interactive/Loading Area -->
+<footer class="w-full flex flex-col items-center gap-8 pb-12 z-10">
+<!-- Loading Animation Area -->
+<div class="flex flex-col items-center space-y-4">
+<div class="loading-track">
+<div class="loading-bar"></div>
+</div>
+<span class="font-caption text-caption text-white/30 tracking-[0.2em] uppercase">
+                Loading...
+            </span>
+</div>
+<!-- Responsibility Message -->
+<div class="flex items-center gap-2 text-white/40">
+<span class="font-caption text-caption">Drink Responsibly 🙏</span>
+</div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulated redirection logic after loading bar finishes
+            const loadingBar = document.querySelector('.loading-bar');
+            loadingBar.addEventListener('animationend', () => {
+                // In a real app, this would trigger navigation to the main Shop screen
+                console.log('Splash sequence complete. Transitioning to Home...');
+            });
+
+            // Gentle parallax movement based on device orientation (if mobile) or mouse (if desktop)
+            window.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 15;
+                const y = (e.clientY / window.innerHeight - 0.5) * 15;
+                const glass = document.querySelector('.glass-glow');
+                if(glass) {
+                    glass.style.transform = `translate(${x}px, ${y}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

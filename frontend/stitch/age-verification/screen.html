@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>DrinkIt - Age Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#765b00",
+                    "on-primary-fixed-variant": "#00530e",
+                    "background": "#f5fbee",
+                    "surface-bright": "#f5fbee",
+                    "inverse-on-surface": "#ecf3e6",
+                    "primary-fixed-dim": "#74dd6e",
+                    "tertiary-container": "#706f87",
+                    "on-tertiary-fixed-variant": "#45455b",
+                    "muted": "#6B7280",
+                    "secondary-container": "#fec70f",
+                    "on-secondary-fixed": "#241a00",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#f9f5ff",
+                    "surface-tint": "#006e16",
+                    "on-primary": "#ffffff",
+                    "danger": "#D32F2F",
+                    "surface-container-low": "#eff6e9",
+                    "on-surface": "#171d15",
+                    "inverse-primary": "#74dd6e",
+                    "primary-light": "#E8F5E9",
+                    "surface-container": "#eaf0e3",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002203",
+                    "secondary-fixed": "#ffdf93",
+                    "on-primary-container": "#e0ffd7",
+                    "on-tertiary-fixed": "#1a1a2e",
+                    "surface": "#F4F6F8",
+                    "outline": "#6f7a6a",
+                    "surface-container-high": "#e4eadd",
+                    "on-secondary-fixed-variant": "#594400",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#dee5d8",
+                    "surface-variant": "#dee5d8",
+                    "primary": "#006714",
+                    "on-surface-variant": "#3f4a3c",
+                    "on-tertiary": "#ffffff",
+                    "gold-light": "#FFF8E1",
+                    "outline-variant": "#becab7",
+                    "tertiary-fixed-dim": "#c6c4df",
+                    "tertiary": "#57566e",
+                    "secondary-fixed-dim": "#f4bf00",
+                    "inverse-surface": "#2c322a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#6e5400",
+                    "on-error-container": "#93000a",
+                    "on-background": "#171d15",
+                    "primary-fixed": "#8ffb87",
+                    "surface-dim": "#d6dccf",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#e2e0fc",
+                    "primary-container": "#0c831f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "margin-desktop": "40px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "badge": ["Inter"],
+                    "caption": ["Inter"],
+                    "body": ["Inter"],
+                    "h2": ["Inter"],
+                    "price": ["Inter"],
+                    "h1": ["Inter"],
+                    "h3": ["Inter"]
+            },
+            "fontSize": {
+                    "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom animation for the card entry */
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .overlay-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden">
+<!-- Full Screen Background Container -->
+<div class="relative min-h-screen w-full flex items-end md:items-center justify-center p-4 md:p-8">
+<!-- Background Image with Dark Overlay -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAueBJLFycg0mZFAiPcpOrO8lD44U44AZ_10YPdmHQarwcM3tXuTmnfvd9xIfLneeB27yelo3vRqW6K0NUxZ5nyKH-GWAGmrr3eSjy4FL4d2k_ZK7cSzcXAUqOXJ2mjgcC4ga1HkbBq7dH1rMKfPC1GUc6-e_jYjVjENMTFY1WJD1DeSz8ePWGMSM_xAHELGa4CAaywIsJaNhMw22Yk0-nTUaB9urLNknvN_g1RQ_4acN9FaN3t-wu1Tj9ZMFdsUDHvjQffy9TFFQ'); background-size: cover; background-position: center;">
+</div>
+<div class="absolute inset-0 overlay-gradient z-10 backdrop-blur-[2px]"></div>
+</div>
+<!-- Verification Card -->
+<main class="relative z-20 w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-2xl p-xl md:p-xl animate-slide-up transform transition-all hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
+<div class="flex flex-col items-center text-center space-y-lg">
+<!-- Icon Branding -->
+<div class="flex items-center justify-center w-20 h-20 bg-surface-container rounded-full mb-2">
+<span aria-label="18 plus restricted" class="text-5xl" role="img">🔞</span>
+</div>
+<!-- Text Content -->
+<div class="space-y-sm">
+<h1 class="font-h1 text-h1 text-on-surface tracking-tight">
+                        Are you 21 or older?
+                    </h1>
+<p class="font-body text-body text-muted px-4">
+                        DrinkIt delivers alcohol. You must be of legal drinking age to continue.
+                    </p>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-md pt-4">
+<!-- Primary Yes Button -->
+<button class="group relative w-full h-[56px] bg-primary-container text-on-primary-container font-h3 text-h3 rounded-xl overflow-hidden transition-all duration-300 active:scale-95 hover:brightness-110 shadow-md">
+<span class="relative z-10">Yes, I'm 21+</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<!-- Secondary No Button -->
+<button class="w-full h-[56px] bg-transparent border-2 border-outline-variant text-on-surface-variant font-h3 text-h3 rounded-xl transition-all duration-200 active:scale-95 hover:bg-surface-container-low">
+                        No, I'm not
+                    </button>
+</div>
+<!-- Legal Footer -->
+<footer class="pt-4 px-2">
+<p class="font-caption text-caption text-muted leading-relaxed">
+                        By continuing, you agree to our 
+                        <a class="text-primary font-semibold hover:underline" href="#">Terms of Service</a> 
+                        and confirm you are of legal age.
+                    </p>
+</footer>
+</div>
+</main>
+<!-- Brand Mark (Atmospheric) -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 z-20 md:left-margin-desktop md:translate-x-0">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-4xl">wine_bar</span>
+<span class="font-h1 text-h1 tracking-tighter">DrinkIt</span>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const primaryBtn = document.querySelector('button.bg-primary-container');
+            const secondaryBtn = document.querySelector('button.bg-transparent');
+
+            primaryBtn.addEventListener('click', () => {
+                // Mock transition for confirmation
+                primaryBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span>';
+                setTimeout(() => {
+                    window.location.reload(); // Simulate entry
+                }, 800);
+            });
+
+            secondaryBtn.addEventListener('click', () => {
+                alert("You must be 21 or older to access DrinkIt.");
+            });
+        });
+    </script>
+</body></html>

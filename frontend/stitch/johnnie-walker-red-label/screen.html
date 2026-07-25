@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Johnnie Walker Red Label - DrinkIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#6e5400",
+                    "background": "#f5fbee",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d6dccf",
+                    "surface-container-low": "#eff6e9",
+                    "secondary-fixed-dim": "#f4bf00",
+                    "inverse-surface": "#2c322a",
+                    "primary-fixed-dim": "#74dd6e",
+                    "on-surface": "#171d15",
+                    "on-primary-container": "#e0ffd7",
+                    "on-secondary-fixed-variant": "#594400",
+                    "tertiary-container": "#706f87",
+                    "outline-variant": "#becab7",
+                    "secondary": "#765b00",
+                    "tertiary": "#57566e",
+                    "surface-container-high": "#e4eadd",
+                    "primary-light": "#E8F5E9",
+                    "tertiary-fixed-dim": "#c6c4df",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#dee5d8",
+                    "primary": "#006714",
+                    "on-primary-fixed": "#002203",
+                    "danger": "#D32F2F",
+                    "tertiary-fixed": "#e2e0fc",
+                    "on-tertiary-fixed": "#1a1a2e",
+                    "on-background": "#171d15",
+                    "secondary-container": "#fec70f",
+                    "muted": "#6B7280",
+                    "gold-light": "#FFF8E1",
+                    "on-tertiary-fixed-variant": "#45455b",
+                    "primary-fixed": "#8ffb87",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#00530e",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#0c831f",
+                    "surface-tint": "#006e16",
+                    "outline": "#6f7a6a",
+                    "inverse-on-surface": "#ecf3e6",
+                    "secondary-fixed": "#ffdf93",
+                    "error": "#ba1a1a",
+                    "surface": "#F4F6F8",
+                    "on-tertiary-container": "#f9f5ff",
+                    "inverse-primary": "#74dd6e",
+                    "surface-container-highest": "#dee5d8",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#241a00",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eaf0e3",
+                    "on-surface-variant": "#3f4a3c",
+                    "surface-bright": "#f5fbee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "md": "16px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "xl": "32px",
+                    "gutter": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body": ["Inter"],
+                    "badge": ["Inter"],
+                    "price": ["Inter"],
+                    "caption": ["Inter"],
+                    "h1": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"]
+            },
+            "fontSize": {
+                    "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .product-bottom-sheet { box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
+        .custom-scrollbar::-webkit-scrollbar { display: none; }
+        .custom-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface overflow-x-hidden">
+<!-- Top Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-md py-base bg-transparent transition-colors duration-300" id="topNav">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest/80 backdrop-blur shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest/80 backdrop-blur shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+</header>
+<!-- Hero Section -->
+<main class="relative h-[480px] w-full flex items-center justify-center overflow-hidden">
+<!-- Blurred Background -->
+<div class="absolute inset-0 bg-cover bg-center blur-xl scale-110 opacity-40 grayscale-[20%]" data-alt="A blurred, artistic background of a Johnnie Walker whisky bottle in a luxury bar setting. The lighting is warm and amber, creating a sophisticated and premium feel. Subtle shadows and soft glows evoke a sense of high-end indulgence, matching the brand's heritage and the drink's golden liquid appearance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuwlPt5Vw0tzMUWXiFq7mNOdKQkvM24vPIhkyJwvlPld6WzQHHl8csRfB4TcK7uMSvq-zQqovnU6FGwVuXIELiotGHr-fo717fo5UXEXAUSBBM8HZn3pHoUxlSTDCrZ2Sowj1_5Uy-DpgkPOaoZpoh6ITZYydjuBymeOmfX9nifMlcaXjTMDH3G2yMuas_M4cxotm6SS3Lh15H2o6-P-DlyUnuifD5s4rZgdINgF9W_CoeC03LxOtNQJtbHKTpfB5Fu34OD0echlo')">
+</div>
+<!-- Product Spotlight Container -->
+<div class="relative z-10 w-[280px] h-[340px] flex items-center justify-center">
+<div class="absolute inset-0 bg-surface rounded-full scale-110 opacity-80 blur-2xl"></div>
+<div class="relative z-20 w-full h-full flex items-center justify-center">
+<img class="h-[280px] object-contain drop-shadow-2xl" data-alt="A professional, high-resolution product studio shot of a 750ml Johnnie Walker Red Label whisky bottle. The bottle is perfectly centered and upright, showcasing the iconic slanted label and striding man logo. Clear glass reveals the rich golden amber whisky. Dramatic studio lighting highlights the glass contours and label details against a clean, light grey minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZmwdnTXIBAPQDWmnXGomaQ-gzbMADry2frtK_417UxCY80qHA3MH545I1yP_DRgIXIlgIuYmZmRpS9zX5G8Fov4D3bRdB99BGzp5G5CELcul95sr8dK1HgrYnAtfw3pQskF-tzJYtBm1zlRC4CDfmw7wmG0AYht9D4yDGZ8GuSaZKwv5cDnki91CdYAUHm5GEhGbMWkGcKTkCR708iE62evqz8JOoklEblVXz1R5y0HgH-k2RCF2Xz0gDLxSoYi5NpciYhVHvgKo"/>
+</div>
+</div>
+</main>
+<!-- Product Bottom Sheet -->
+<section class="product-bottom-sheet relative -mt-12 z-20 bg-surface-container-lowest rounded-t-[24px] min-h-[600px] pb-32">
+<!-- Drag Handle -->
+<div class="w-12 h-1.5 bg-outline-variant/30 rounded-full mx-auto mt-4"></div>
+<div class="px-md mt-6">
+<!-- Header -->
+<div class="flex flex-col mb-4">
+<span class="font-caption text-muted tracking-wider uppercase">Johnnie Walker</span>
+<h1 class="font-h2 text-h2 text-on-tertiary-fixed leading-tight mt-1">Red Label Whisky</h1>
+</div>
+<!-- Specs & Rating -->
+<div class="flex items-center gap-3 mb-6">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-badge text-badge rounded-full">
+                    750ml · 40% ABV
+                </span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFC107] text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-badge text-badge text-on-surface-variant">4.3 <span class="text-muted font-normal">(128 reviews)</span></span>
+</div>
+</div>
+<!-- Price & Loyalty -->
+<div class="flex justify-between items-center p-4 bg-surface-bright border border-outline-variant/20 rounded-xl mb-6">
+<div class="flex flex-col">
+<span class="font-price text-[24px] text-primary">₹1,800</span>
+<span class="text-[10px] text-muted font-badge uppercase">Incl. all taxes</span>
+</div>
+<div class="flex items-center gap-2 bg-gold-light px-3 py-2 rounded-lg border border-on-secondary-container/10">
+<span class="text-[16px]">🪙</span>
+<span class="font-badge text-badge text-on-secondary-fixed-variant">Earn 180 pts</span>
+</div>
+</div>
+<!-- Description -->
+<div class="mb-8">
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Description</h3>
+<p class="font-body text-body text-on-surface-variant">
+                    A blend of grain and malt whiskies from across Scotland. Red Label is known for its bold, smoky character...
+                    <button class="text-primary font-semibold ml-1">Read More</button>
+</p>
+</div>
+<!-- Pairings -->
+<div class="mb-8">
+<span class="font-caption text-muted mb-base block">Pairs well with</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-1.5 bg-surface-container rounded-full text-on-surface-variant font-body text-[13px] border border-outline-variant/10">Pizza</span>
+<span class="px-4 py-1.5 bg-surface-container rounded-full text-on-surface-variant font-body text-[13px] border border-outline-variant/10">BBQ</span>
+<span class="px-4 py-1.5 bg-surface-container rounded-full text-on-surface-variant font-body text-[13px] border border-outline-variant/10">Cheese</span>
+</div>
+</div>
+<!-- Similar Products -->
+<div class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-h3 text-h3">Similar Products</h3>
+<button class="text-primary font-semibold text-caption">View All</button>
+</div>
+<div class="flex overflow-x-auto gap-4 custom-scrollbar">
+<!-- Similar Card 1 -->
+<div class="flex-shrink-0 w-32">
+<div class="bg-surface rounded-xl p-3 mb-2 flex items-center justify-center aspect-square shadow-sm">
+<img class="h-20 object-contain" data-alt="A bottle of Johnnie Walker Black Label whisky, showing its premium dark branding and aged character, set against a clean studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7fennHnA8tZJXlru6zKBMq6Fz12_bxIP_IxMI5SBjY4Fy5MxfLPrw2BUXoah0mrrGwLFOZ-1DHvRKgF50sCfRQd9V-BTlMng7tnkaB7rjFwWku-BVbdvNaJj4PUMll56Dd_Vq29YTFc29yr1WXdSFFKoXptzSftCK2r0tg59EgBw1iTxeiTF0JM-5UK6RBhUuG77xc1_THt_j6_QTYrOfzwpm4XeBtrgWNJdy3Z1d-HJqIizMyTJjgl7AV-M2GHVhpvh1s-y7tPk"/>
+</div>
+<p class="font-badge text-badge text-on-surface line-clamp-1">Black Label</p>
+<p class="font-price text-caption text-primary">₹3,200</p>
+</div>
+<!-- Similar Card 2 -->
+<div class="flex-shrink-0 w-32">
+<div class="bg-surface rounded-xl p-3 mb-2 flex items-center justify-center aspect-square shadow-sm">
+<img class="h-20 object-contain" data-alt="A bottle of Jameson Irish Whiskey with its classic green glass and cream label, showcasing a smooth and accessible whiskey profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwY8YLph3yfPc453iiFVbvOILXw5jZzHoVzow--HoUN1mjMIbHAJHbJjz8yCn-2wsfWn2ebXSvhn1Jd41WHe5It5-0tzGzF4iMJWdED40lckJUXUnsHr2fL1djVD3Db1Tk86Iqc4jfm_s1WFWl0nqdl57M1DQ8jOCUaPL1MSdYLZKOIcnZdyo-fCtgqH-w0GCUwJB4HaO15lJ3HToneWOk8xQiazRlpgue9P5Bn-fru7hv96tikUZpbcFXCbh6R0c4Uk99ZkAcIlg"/>
+</div>
+<p class="font-badge text-badge text-on-surface line-clamp-1">Jameson Irish</p>
+<p class="font-price text-caption text-primary">₹2,100</p>
+</div>
+<!-- Similar Card 3 -->
+<div class="flex-shrink-0 w-32">
+<div class="bg-surface rounded-xl p-3 mb-2 flex items-center justify-center aspect-square shadow-sm">
+<img class="h-20 object-contain" data-alt="A bottle of Ballantine's Finest scotch whisky with its distinctive blue and white labeling and rectangular bottle shape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdSI5DzVb6G3IHHRc7-pyWj-04cY6iLL9yH4_w2xp93LRxui2n6nX6lMfjayhnGb6P7rmAWNueXwVaM0PYmyGbedZBKaEsvtxXwtNIQb4wD-_wEyJ7hlnJyffZxHgmEBBbXLHVpKdKkdqtAXKTPT-BjQjLmRNhQ5n64YJ28M-AJziGggiWVMiLGsN0TkkSMZWy4eKIlFP3TZrek3A1OV_KusLBVArfKRTuXgnB4MvnO1xv4sMpAQW7pGK2-M4wYLw7fcne_62c-8I"/>
+</div>
+<p class="font-badge text-badge text-on-surface line-clamp-1">Ballantine's</p>
+<p class="font-price text-caption text-primary">₹1,650</p>
+</div>
+</div>
+</div>
+<!-- Frequently Bought With -->
+<div class="mb-12">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-h3 text-h3">Frequently bought with</h3>
+</div>
+<div class="flex overflow-x-auto gap-4 custom-scrollbar">
+<!-- Mixer 1 -->
+<div class="flex items-center gap-3 bg-surface p-2 pr-4 rounded-xl flex-shrink-0">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+<img class="h-8 object-contain" data-alt="A single can of premium tonic water with clear branding, condensation on the metal suggesting coldness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZlekPAaDqaGqZfIap3VBSweXYhGxa2TE_DDbiWFBZNQDxTKleQ_f15-r-dl_KAljGOIVDAcwegCUjxDDY5cGm5AZxH7FQLvThywqRuup8I3d37thvCrEzvUKzTkmFdKqrYp-5AJ6el_nKAO_UjEn8nMuZVkX6O0Iip0V00A3vnnFqK6Yd0x033syyM48VbmX_rCS7pFsamAAX3WqOjyILKQq2Rg_hm-M87Zl1SUAOqg8xfldflCTgbCl508MPOAld03_gx3xXKKE"/>
+</div>
+<div>
+<p class="font-badge text-[12px] text-on-surface">Club Soda</p>
+<p class="text-[12px] text-primary font-bold">₹40</p>
+</div>
+<button class="w-6 h-6 bg-primary text-white rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+<!-- Mixer 2 -->
+<div class="flex items-center gap-3 bg-surface p-2 pr-4 rounded-xl flex-shrink-0">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+<img class="h-10 object-cover" data-alt="A stack of three fresh, vibrant yellow lemons with textured skins, photographed in bright studio light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl5O6MPQ9unn1J78GR_umSAJCiX90og0bi8XS-iFed8xDLeL-_quJYrUD5Ibo-yHV_qFlTF5AJIjPEj0UW9mN2w7MrmST_7zFiBVFjVPcVkyHy8dBji1m1pd5omKtGHhRwy5Zgqy70xKwIah5Pr1qBLqwEtLAHUbl_t5uWwGwlyy4HiOMB0mIJ7tMIKF1y4QJCgUBQLlsfhvz5YeoAR_DnBcoqiuhJMjIOXVOv1fqPyTctS1e7fxGvkQhUr7JtQwcDUygi6b-55SA"/>
+</div>
+<div>
+<p class="font-badge text-[12px] text-on-surface">Fresh Lemons</p>
+<p class="text-[12px] text-primary font-bold">₹25</p>
+</div>
+<button class="w-6 h-6 bg-primary text-white rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Interaction Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest p-md border-t border-outline-variant/30 flex items-center gap-4 z-[60]">
+<!-- Quantity Selector -->
+<div class="flex items-center justify-between bg-surface-container rounded-xl h-[56px] px-4 w-[120px]">
+<button class="text-on-surface-variant font-bold text-xl active:scale-90 transition-transform" onclick="updateQty(-1)">−</button>
+<span class="font-h3 text-on-surface" id="qty">1</span>
+<button class="text-on-surface-variant font-bold text-xl active:scale-90 transition-transform" onclick="updateQty(1)">+</button>
+</div>
+<!-- Add to Cart Button -->
+<button class="flex-1 bg-primary text-on-primary font-h3 h-[56px] rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">shopping_cart</span>
+            Add to Cart
+        </button>
+</div>
+<script>
+        let quantity = 1;
+        function updateQty(change) {
+            quantity = Math.max(1, quantity + change);
+            document.getElementById('qty').innerText = quantity;
+        }
+
+        // Scroll shadow for nav bar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('topNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Simple entry animation for bottom sheet
+        document.addEventListener('DOMContentLoaded', () => {
+            const sheet = document.querySelector('.product-bottom-sheet');
+            sheet.style.transform = 'translateY(50px)';
+            sheet.style.opacity = '0';
+            sheet.style.transition = 'all 0.6s cubic-bezier(0.2, 1, 0.3, 1)';
+            
+            setTimeout(() => {
+                sheet.style.transform = 'translateY(0)';
+                sheet.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body></html>

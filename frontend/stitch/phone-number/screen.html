@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DrinkIt - Enter Phone Number</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#74dd6e",
+                    "muted": "#6B7280",
+                    "on-tertiary-container": "#f9f5ff",
+                    "surface-container-highest": "#dee5d8",
+                    "surface-container-low": "#eff6e9",
+                    "on-surface-variant": "#3f4a3c",
+                    "secondary-fixed": "#ffdf93",
+                    "on-secondary-fixed": "#241a00",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e4eadd",
+                    "inverse-surface": "#2c322a",
+                    "background": "#f5fbee",
+                    "primary-fixed": "#8ffb87",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#57566e",
+                    "surface-tint": "#006e16",
+                    "primary-container": "#0c831f",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#00530e",
+                    "on-background": "#171d15",
+                    "inverse-primary": "#74dd6e",
+                    "on-secondary-fixed-variant": "#594400",
+                    "on-tertiary-fixed-variant": "#45455b",
+                    "on-tertiary-fixed": "#1a1a2e",
+                    "surface-dim": "#d6dccf",
+                    "gold-light": "#FFF8E1",
+                    "tertiary-container": "#706f87",
+                    "secondary-container": "#fec70f",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002203",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#f4bf00",
+                    "primary-light": "#E8F5E9",
+                    "surface-bright": "#f5fbee",
+                    "surface": "#F4F6F8",
+                    "surface-variant": "#dee5d8",
+                    "secondary": "#765b00",
+                    "tertiary-fixed-dim": "#c6c4df",
+                    "on-secondary-container": "#6e5400",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "outline": "#6f7a6a",
+                    "danger": "#D32F2F",
+                    "on-primary-container": "#e0ffd7",
+                    "surface-container": "#eaf0e3",
+                    "primary": "#006714",
+                    "tertiary-fixed": "#e2e0fc",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#ecf3e6",
+                    "outline-variant": "#becab7",
+                    "drinkit-navy": "#1A1A2E"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "md": "16px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "h1": ["Inter"],
+                    "price": ["Inter"],
+                    "badge": ["Inter"],
+                    "h2": ["Inter"],
+                    "caption": ["Inter"],
+                    "body": ["Inter"],
+                    "h3": ["Inter"]
+            },
+            "fontSize": {
+                    "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* Explicit override as requested */
+            color: #171d15;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .input-focus-ring:focus-within {
+            border-color: #006714;
+            box-shadow: 0 0 0 1px #006714;
+        }
+
+        /* Micro-interactions */
+        .btn-active:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- Top AppBar (Back Action Only for Transactional Flow) -->
+<header class="w-full max-w-md bg-white px-margin-mobile h-14 flex items-center justify-start sticky top-0 z-50">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors btn-active text-drinkit-navy">
+<span class="material-symbols-outlined text-[24px]" data-icon="arrow_back">arrow_back</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-md px-margin-mobile pt-4 pb-32 flex flex-col">
+<!-- Header Section -->
+<section class="mb-xl">
+<h1 class="font-h1 text-h1 text-drinkit-navy mb-2">What's your number?</h1>
+<p class="font-body text-body text-muted">We'll send you a verification code</p>
+</section>
+<!-- Phone Input Group -->
+<section class="mb-xl">
+<div class="flex gap-3 h-14 items-stretch">
+<!-- Country Code Selection -->
+<div class="flex items-center gap-2 px-4 border border-outline-variant rounded-xl bg-white">
+<span class="text-xl">🇮🇳</span>
+<span class="font-h3 text-h3 text-on-surface">+91</span>
+</div>
+<!-- Number Input -->
+<div class="flex-1 flex items-center border border-outline-variant rounded-xl bg-white px-4 input-focus-ring transition-all">
+<input class="w-full bg-transparent border-none focus:ring-0 font-h3 text-h3 text-on-surface placeholder:text-outline-variant p-0" maxlength="10" placeholder="98765 43210" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Dynamic Illustration Area -->
+<section class="flex-1 flex items-center justify-center py-lg animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="w-full max-w-[280px] aspect-square relative">
+<img alt="Blinkit Delivery Rider Illustration" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgtcP0MtUIYIxpXzOSne814KRzI1g05V8JWD4wcBEYheOpNeGTDdr_JPou83rxDz3gYV99ax6HhoK0gmClEbXPxbrLzEBZbnsvezO4O4t-GhVFmCAvV4Mx0k1jqHFqiRYg4U58dAalRQeXpT6c95fE_xZkBKmMLr1WXF04pDdLZpyghO85IFtGXn0RS28HxngMrC0LgIFskX6bUhFHQkmVgnIAjPmIB-l3pmkeOvE4F3WKsyjlcrjyx45H5f41kF7_-l3cTv0oKcg"/>
+</div>
+</section>
+</main>
+<!-- Bottom Sticky Action (Suppressing Nav Shell as per Transactional Rule) -->
+<footer class="fixed bottom-0 w-full max-w-md bg-white px-margin-mobile pt-md pb-lg shadow-[0_-2px_12px_rgba(0,0,0,0.08)]">
+<button class="w-full h-14 bg-primary-container text-on-primary font-h3 text-h3 rounded-xl flex items-center justify-center btn-active shadow-sm hover:brightness-105 transition-all">
+            Send OTP
+        </button>
+<p class="mt-md text-center font-caption text-caption text-muted">
+            By continuing you accept our <a class="underline decoration-muted/50 underline-offset-2" href="#">Terms of Service</a>
+</p>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.querySelector('input');
+            const button = document.querySelector('button.bg-primary-container');
+
+            // Simple input formatting and validation state
+            input.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                e.target.value = value;
+                
+                if (value.length === 10) {
+                    button.classList.remove('opacity-50', 'cursor-not-allowed');
+                    button.classList.add('opacity-100');
+                } else {
+                    button.classList.add('opacity-50');
+                }
+            });
+
+            // Initial button state
+            button.classList.add('opacity-50');
+
+            // Handle Back Navigation
+            const backBtn = document.querySelector('header button');
+            backBtn.addEventListener('click', () => {
+                console.log('Navigating back...');
+                // In a real app: window.history.back();
+            });
+        });
+    </script>
+</body></html>

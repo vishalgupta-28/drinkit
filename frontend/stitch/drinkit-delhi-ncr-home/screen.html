@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>DrinkIt - Premium Spirits Delivered</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-error": "#ffffff",
+                "primary-light": "#E8F5E9",
+                "surface-bright": "#f5fbee",
+                "secondary-fixed": "#ffdf93",
+                "background": "#f5fbee",
+                "surface-dim": "#d6dccf",
+                "on-secondary": "#ffffff",
+                "tertiary-fixed": "#e2e0fc",
+                "secondary": "#765b00",
+                "on-background": "#171d15",
+                "inverse-on-surface": "#ecf3e6",
+                "on-tertiary-fixed": "#1a1a2e",
+                "on-surface": "#171d15",
+                "surface-container-high": "#e4eadd",
+                "tertiary": "#57566e",
+                "surface-variant": "#dee5d8",
+                "surface": "#F4F6F8",
+                "outline": "#6f7a6a",
+                "on-error-container": "#93000a",
+                "secondary-fixed-dim": "#f4bf00",
+                "primary-fixed": "#8ffb87",
+                "on-tertiary-container": "#f9f5ff",
+                "on-surface-variant": "#3f4a3c",
+                "on-secondary-container": "#6e5400",
+                "secondary-container": "#fec70f",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-highest": "#dee5d8",
+                "on-tertiary": "#ffffff",
+                "primary-fixed-dim": "#74dd6e",
+                "outline-variant": "#becab7",
+                "inverse-surface": "#2c322a",
+                "primary": "#006714",
+                "danger": "#D32F2F",
+                "surface-container-low": "#eff6e9",
+                "surface-container": "#eaf0e3",
+                "on-secondary-fixed": "#241a00",
+                "gold-light": "#FFF8E1",
+                "on-secondary-fixed-variant": "#594400",
+                "on-primary-fixed": "#002203",
+                "primary-container": "#0c831f",
+                "on-primary-fixed-variant": "#00530e",
+                "tertiary-fixed-dim": "#c6c4df",
+                "inverse-primary": "#74dd6e",
+                "on-primary": "#ffffff",
+                "muted": "#6B7280",
+                "on-primary-container": "#e0ffd7",
+                "tertiary-container": "#706f87",
+                "error": "#ba1a1a",
+                "error-container": "#ffdad6",
+                "surface-tint": "#006e16",
+                "on-tertiary-fixed-variant": "#45455b"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "md": "16px",
+                "margin-mobile": "16px",
+                "xl": "32px",
+                "base": "8px",
+                "lg": "24px",
+                "gutter": "16px",
+                "sm": "8px",
+                "xs": "4px",
+                "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                "caption": ["Inter"],
+                "body": ["Inter"],
+                "badge": ["Inter"],
+                "h2": ["Inter"],
+                "price": ["Inter"],
+                "h3": ["Inter"],
+                "h1": ["Inter"]
+            },
+            "fontSize": {
+                "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-effect { backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.8); }
+        .hero-gradient-1 { background: linear-gradient(135deg, #004d0f 0%, #006714 100%); }
+        .hero-gradient-2 { background: linear-gradient(135deg, #fec70f 0%, #765b00 100%); }
+        .hero-gradient-3 { background: linear-gradient(135deg, #1a1a2e 0%, #2c322a 100%); }
+        .happy-hour-gradient { background: linear-gradient(90deg, #fec70f 0%, #ffdf93 100%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface pb-32">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-md py-base w-full sticky top-0 z-50 bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">location_on</span>
+<div class="flex flex-col">
+<span class="text-[11px] text-muted leading-tight">Delivering to</span>
+<div class="flex items-center gap-1">
+<span class="font-bold text-[#171d15] text-[16px]">Delhi NCR</span>
+<span class="material-symbols-outlined text-primary text-[16px]">expand_more</span>
+</div>
+</div>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<h1 class="font-h1 text-h1 font-black text-primary">DrinkIt</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-gold-light px-2 py-1 rounded-full border border-secondary-fixed">
+<span class="material-symbols-outlined text-[#F8C200] text-[18px]" style="font-variation-settings: 'FILL' 1;">generating_tokens</span>
+<span class="font-bold text-[13px] ml-1 text-on-secondary-fixed">1,240 pts</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-on-surface">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto">
+<!-- Shop Status Bar -->
+<section class="px-md mt-4">
+<div class="bg-surface-container-lowest rounded-xl p-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div>
+<p class="font-bold text-on-surface text-[14px]">Sharma Wine Shop • 28 min</p>
+</div>
+</div>
+<div class="flex items-center bg-primary-light text-primary px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[18px] mr-1">delivery_dining</span>
+<span class="text-[11px] font-black tracking-tighter">FAST</span>
+</div>
+</div>
+</section>
+<!-- Happy Hour Banner -->
+<section class="px-md mt-4">
+<div class="happy-hour-gradient rounded-xl p-4 relative overflow-hidden flex items-center justify-between">
+<div class="relative z-10">
+<h2 class="font-h2 text-on-secondary-fixed-variant flex items-center gap-2">
+<span>🍺</span> Happy Hour!
+                    </h2>
+<p class="text-[14px] font-semibold text-on-secondary-fixed-variant">15% OFF + 2x Points</p>
+</div>
+<div class="bg-white/40 backdrop-blur rounded-lg px-3 py-2 border border-white/20">
+<p class="text-[10px] uppercase font-bold text-on-secondary-fixed-variant mb-1">Ends In</p>
+<p class="font-mono font-black text-on-secondary-fixed text-[16px]">01:24:37</p>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">liquor</span>
+</div>
+</div>
+</section>
+<!-- Hero Carousel (Scrollable) -->
+<section class="mt-6">
+<div class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-4 px-md">
+<!-- Slide 1 -->
+<div class="min-w-[85vw] hero-gradient-1 p-6 rounded-2xl snap-center flex flex-col justify-between h-44 shadow-lg text-white relative">
+<div>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded text-[10px] font-black uppercase">⚡ Flash Deal</span>
+<h3 class="text-[24px] font-black leading-tight mt-2">Red Label ₹999</h3>
+<p class="text-[14px] opacity-80 line-through">was ₹1,800</p>
+</div>
+<div class="flex items-center gap-2 text-[12px] font-medium bg-black/20 self-start px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>Ends in 2:34:17</span>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="min-w-[85vw] hero-gradient-2 p-6 rounded-2xl snap-center flex flex-col justify-between h-44 shadow-lg text-white">
+<div>
+<h3 class="text-[24px] font-black leading-tight">🔥 Earn 2x Points</h3>
+<p class="text-[14px] opacity-90">Valid all weekend on premium spirits.</p>
+</div>
+<button class="bg-white text-secondary px-4 py-2 rounded-xl font-bold text-[13px] self-start">Shop Now</button>
+</div>
+<!-- Slide 3 -->
+<div class="min-w-[85vw] hero-gradient-3 p-6 rounded-2xl snap-center flex flex-col justify-between h-44 shadow-lg text-white">
+<div>
+<h3 class="text-[24px] font-black leading-tight">🎁 Refer a Friend</h3>
+<p class="text-[14px] opacity-80">Get 100 free points on their first order.</p>
+</div>
+<span class="material-symbols-outlined text-[40px] opacity-20 absolute bottom-4 right-4">diversity_2</span>
+</div>
+</div>
+</section>
+<!-- Shop By Vibe -->
+<section class="mt-8">
+<h4 class="px-md font-bold text-[16px] mb-3">Shop by Vibe</h4>
+<div class="flex overflow-x-auto no-scrollbar gap-2 px-md">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-white font-bold text-[13px] flex items-center gap-1">
+<span>🎂</span> Birthday
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-semibold text-[13px] flex items-center gap-1">
+<span>🎉</span> House Party
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-semibold text-[13px] flex items-center gap-1">
+<span>🌙</span> Date Night
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-semibold text-[13px] flex items-center gap-1">
+<span>🏏</span> Match Night
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-semibold text-[13px] flex items-center gap-1">
+<span>🛋️</span> Chill
+                </button>
+</div>
+</section>
+<!-- Categories Chips -->
+<section class="mt-6 px-md">
+<div class="flex overflow-x-auto no-scrollbar gap-2">
+<button class="bg-primary text-white px-5 py-2 rounded-full font-bold text-[13px]">All</button>
+<button class="border border-outline-variant text-on-surface-variant px-5 py-2 rounded-full font-semibold text-[13px] bg-white">Beer</button>
+<button class="border border-outline-variant text-on-surface-variant px-5 py-2 rounded-full font-semibold text-[13px] bg-white">Whisky</button>
+<button class="border border-outline-variant text-on-surface-variant px-5 py-2 rounded-full font-semibold text-[13px] bg-white">Wine</button>
+<button class="border border-outline-variant text-on-surface-variant px-5 py-2 rounded-full font-semibold text-[13px] bg-white">Vodka</button>
+<button class="border border-outline-variant text-on-surface-variant px-5 py-2 rounded-full font-semibold text-[13px] bg-white">Rum</button>
+<button class="border border-outline-variant text-on-surface-variant px-5 py-2 rounded-full font-semibold text-[13px] bg-white">Gin</button>
+</div>
+</section>
+<!-- Best Sellers Grid -->
+<section class="mt-8 px-md">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-bold text-[18px]">Best Sellers</h4>
+<button class="text-primary font-bold text-[14px]">View All</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.08)] relative flex flex-col">
+<div class="absolute top-2 left-2 flex flex-col gap-1 z-10">
+<span class="bg-danger text-white text-[10px] font-black px-2 py-0.5 rounded leading-none">SALE</span>
+<span class="bg-red-50 text-danger text-[9px] font-bold px-1.5 py-0.5 rounded border border-danger/10">Only 2 left!</span>
+</div>
+<div class="h-40 w-full mb-3 flex items-center justify-center p-2">
+<img class="h-full object-contain" data-alt="A professional studio product shot of a premium 750ml glass whisky bottle with an amber glow, set against a pristine, soft-lit white background. The bottle features elegant gold labeling and a dark wooden cap. High-contrast commercial photography style, emphasizing the liquid's clarity and texture, in line with a high-end commerce app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv2XIMQ0Pi6GfTexA123Sg_8-Ubq-emxnGA-sxdz033gHQTKFb3jDoxhyOUT5UJECnQ-_8yLVMloHJrPFtETB3kRKLMBIqs0m6tE0YHtrccIfksSsDDLxkAgTx2vZ_sKGSgKFHRgvNOkR5X0q4VRn095cJVSPXVJ9IHSDIXcPkAas8JvFQ__IR_odVCGeTdfaHHswzIifZx51mRU9WN6T3N4Dp1RgQYclsd2X7A3RfHALYj6-J6jPl52U0C1odpGrpZhlBjQ4k7CE"/>
+</div>
+<div>
+<h5 class="font-bold text-[13px] text-on-surface leading-tight">Johnny Walker Black Label</h5>
+<p class="text-[11px] text-muted mb-1">750ml</p>
+<p class="text-primary font-bold text-[16px]">₹2,400</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[#F8C200] text-[14px]" style="font-variation-settings: 'FILL' 1;">generating_tokens</span>
+<span class="text-[11px] font-bold text-secondary">240 pts</span>
+</div>
+</div>
+<button class="absolute bottom-3 right-3 bg-primary w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.08)] relative flex flex-col">
+<div class="absolute top-2 left-2 z-10">
+<span class="bg-danger text-white text-[10px] font-black px-2 py-0.5 rounded leading-none">SALE</span>
+</div>
+<div class="h-40 w-full mb-3 flex items-center justify-center p-2">
+<img class="h-full object-contain" data-alt="A cold, frosted premium beer bottle with condensation droplets, captured in a sharp studio setup. Vibrant labels in primary green and white colors. The lighting is bright and airy, creating a fresh, upscale beverage market feel. Minimalist and clean composition for a modern mobile shopping experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuanZcR_2Nb5MU6BR8lEcnsdG-S6Wf1eMWFtyxKfpsJiso9vkUKkGqILVYvOQRB65--fSgqm9hEityd3Rl3IGEDtR8e6uKj6HLEBLh9qlYMQiZKiVumx4J3JRA3xbU5EFlkpLrfpgDjkHS1GQuZ1J5Mk4OhuYhBZYvYTnaao8nqCw_BaPgNtPcLVmiJRaj72SbOm5TtCEZqli6Jmm-0cfUGwwQf13SrCaX_Yez76ojGIMuqVd2SED7rBKf5O28YAvvRVjbfQH_CHw"/>
+</div>
+<div>
+<h5 class="font-bold text-[13px] text-on-surface leading-tight">Hoegaarden Witbier</h5>
+<p class="text-[11px] text-muted mb-1">330ml • Pack of 6</p>
+<p class="text-primary font-bold text-[16px]">₹1,200</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[#F8C200] text-[14px]" style="font-variation-settings: 'FILL' 1;">generating_tokens</span>
+<span class="text-[11px] font-bold text-secondary">120 pts</span>
+</div>
+</div>
+<button class="absolute bottom-3 right-3 bg-primary w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Flash Deals Section -->
+<section class="mt-10 mb-10">
+<div class="px-md flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<h4 class="font-bold text-[18px]">⚡ Flash Deals</h4>
+<div class="bg-red-50 text-danger border border-error/20 px-2 py-0.5 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="text-[12px] font-mono font-bold">00:43:21</span>
+</div>
+</div>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-md">
+<!-- Landscape Flash Card 1 -->
+<div class="min-w-[280px] bg-white rounded-2xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.08)] flex gap-4">
+<div class="w-24 h-24 bg-surface rounded-xl flex items-center justify-center p-2 relative shrink-0">
+<img class="h-full object-contain" data-alt="A premium vodka bottle with a translucent, frosted glass texture. Silver and blue metallic label details. Professional lighting accentuating the sleek silhouette. Set against a soft grey background that fits the luxurious and rapid-commerce aesthetic of a high-end drinks app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5mUKRY2liIybhDhrzuGNvKwxN-YuL87i8OPR5d5SaXcVtdCUmaY1lykbWImMCD8R9812IQ0xEiYBv9lgbJJ-AkqwCrspkYryl4hGCHH1g-__PoFmcZLazv3SNT_iFiAHO7Tf25xXraoQwQ7Ayq6SOHgmHG8nkiylg-uxD3VY4rWruK23DwzXq4Ee9vbTJSr3in4fcNOaDX3ECvDSiNjH6OOpzXOR-9oGtOugYgsKyrKpaDl-WczUlpoM61dGH-do5XPFhexSi254"/>
+<span class="absolute -top-1 -left-1 bg-primary text-white text-[9px] font-black px-2 py-0.5 rounded italic">FLASH</span>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="font-bold text-[14px] text-on-surface">Grey Goose Vodka</h5>
+<p class="text-[11px] text-muted">750ml</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary font-bold text-[16px]">₹4,200</span>
+<span class="text-[11px] text-muted line-through">₹5,500</span>
+</div>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[#F8C200] text-[14px]" style="font-variation-settings: 'FILL' 1;">generating_tokens</span>
+<span class="text-[11px] font-bold text-secondary">420 pts</span>
+</div>
+</div>
+</div>
+<!-- Landscape Flash Card 2 -->
+<div class="min-w-[280px] bg-white rounded-2xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.08)] flex gap-4">
+<div class="w-24 h-24 bg-surface rounded-xl flex items-center justify-center p-2 relative shrink-0">
+<img class="h-full object-contain" data-alt="An elegant bottle of premium dry gin with botanical illustrations on the label. Clear glass, sophisticated dark green accents. Soft studio lighting creating a premium, refreshing visual. Designed to pop within a clean mobile UI grid for a spirits delivery service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcezzpqGTfHoTlrh5ImNFBBGmP7T9HiX5fIIPS-gFcVDcqFGBovPe6bzrkhRCXY_VPgRVtsAjp6e0an3YelsPnMQdtt6I8dgZeSy7ox9bK2RFohxT7cTxXSX-U6LYKtnGu0_-T0d9m6fE71UQyCHPyUvsyIGQmGgLe9a3hrVVSw1PFRJQevSoeeDTx1gxCrb-fEI9r5Hsi3_DPoQPgWLRqqQcfb0e-Ff2xBIp7uhtC6voCfaKxOMStVt9go1nSBPwukuKWWWDMFls"/>
+<span class="absolute -top-1 -left-1 bg-primary text-white text-[9px] font-black px-2 py-0.5 rounded italic">FLASH</span>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="font-bold text-[14px] text-on-surface">Tanqueray Gin</h5>
+<p class="text-[11px] text-muted">750ml</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary font-bold text-[16px]">₹1,800</span>
+<span class="text-[11px] text-muted line-through">₹2,400</span>
+</div>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[#F8C200] text-[14px]" style="font-variation-settings: 'FILL' 1;">generating_tokens</span>
+<span class="text-[11px] font-bold text-secondary">180 pts</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Cart -->
+<div class="fixed bottom-20 left-0 w-full px-4 z-40">
+<button class="w-full bg-primary-container text-on-primary-container p-4 rounded-2xl shadow-xl flex items-center justify-between transition-transform active:scale-95 group">
+<div class="flex items-center gap-3">
+<div class="bg-white/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</div>
+<div class="text-left">
+<p class="font-black text-[15px] leading-tight">3 items • ₹2,400</p>
+<p class="text-[11px] opacity-80">Earn <span class="text-secondary-container">🪙 240 pts</span></p>
+</div>
+</div>
+<div class="flex items-center gap-1 font-black text-[14px]">
+<span>View Cart</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-lowest border-t border-outline-variant shadow-lg rounded-t-xl">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-light text-primary rounded-xl px-4 py-1.5" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-badge text-badge mt-0.5">Home</span>
+</a>
+<!-- Search -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all px-3 py-1" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-badge text-badge mt-0.5">Search</span>
+</a>
+<!-- Spin -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all px-3 py-1" href="#">
+<span class="material-symbols-outlined">casino</span>
+<span class="font-badge text-badge mt-0.5">Spin</span>
+</a>
+<!-- Rewards -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all px-3 py-1" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-badge text-badge mt-0.5">Rewards</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all px-3 py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-badge text-badge mt-0.5">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.classList.add('scale-95');
+            });
+            btn.addEventListener('touchend', () => {
+                btn.classList.remove('scale-95');
+            });
+        });
+
+        // Auto-animate the Flash Deal timers (simulation)
+        function updateTimers() {
+            // This would normally handle the countdown logic
+        }
+    </script>
+</body></html>

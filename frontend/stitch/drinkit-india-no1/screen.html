@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DrinkIt | Fast Drink Delivery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#002203",
+                    "secondary-container": "#fec70f",
+                    "surface-tint": "#006e16",
+                    "secondary-fixed": "#ffdf93",
+                    "tertiary-fixed": "#e2e0fc",
+                    "tertiary-fixed-dim": "#c6c4df",
+                    "primary": "#006714",
+                    "on-primary-fixed-variant": "#00530e",
+                    "inverse-surface": "#2c322a",
+                    "secondary-fixed-dim": "#f4bf00",
+                    "surface-bright": "#f5fbee",
+                    "inverse-on-surface": "#ecf3e6",
+                    "secondary": "#765b00",
+                    "background": "#f5fbee",
+                    "danger": "#D32F2F",
+                    "surface-container-highest": "#dee5d8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e4eadd",
+                    "primary-container": "#0c831f",
+                    "surface-dim": "#d6dccf",
+                    "surface": "#F4F6F8",
+                    "on-tertiary-fixed-variant": "#45455b",
+                    "tertiary": "#57566e",
+                    "on-secondary-fixed-variant": "#594400",
+                    "surface-variant": "#dee5d8",
+                    "primary-fixed": "#8ffb87",
+                    "outline": "#6f7a6a",
+                    "on-secondary-container": "#6e5400",
+                    "on-surface": "#171d15",
+                    "gold-light": "#FFF8E1",
+                    "outline-variant": "#becab7",
+                    "error-container": "#ffdad6",
+                    "primary-light": "#E8F5E9",
+                    "on-background": "#171d15",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eaf0e3",
+                    "primary-fixed-dim": "#74dd6e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#e0ffd7",
+                    "on-secondary-fixed": "#241a00",
+                    "on-tertiary-fixed": "#1a1a2e",
+                    "surface-container-low": "#eff6e9",
+                    "on-tertiary-container": "#f9f5ff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#74dd6e",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#3f4a3c",
+                    "muted": "#6B7280",
+                    "tertiary-container": "#706f87",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "badge": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"],
+                    "body": ["Inter"],
+                    "price": ["Inter"],
+                    "caption": ["Inter"],
+                    "h1": ["Inter"]
+            },
+            "fontSize": {
+                    "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card-shadow {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #006714 0%, #0c831f 100%);
+        }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        .category-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky bg-surface-container-low dark:bg-inverse-surface shadow-sm z-50">
+<nav class="flex justify-between items-center px-margin-desktop py-md max-w-7xl mx-auto">
+<div class="flex items-center gap-xl">
+<img alt="DrinkIt Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2_ZphxDOzNwP1XQKaLp9kwNFXPqviJRAm8rQhPs-2VgpPZ4LRuwOLkWC_khjv8e7USTBriXLo4IzdZXu7rSJ8j0V1jCTIEidCWrGKRQDrFVdj3B0IuKCOZf1YoF8H5n7YEguakl3s-hnvQyXdjDvFxRso1k_1_s_cyQWB7jNitKr2db9aPnf_2k7V-mty39aGxsM9Uaaz70jKMPJTNiUc5xu5wKxIUEve5MHUMtbDRPCp1ViFBexTA8YnTrKquuXuJ_0q7Jbk03k"/>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body text-body" href="#">Whisky</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Beer</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Wine</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Offers</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex bg-surface-variant rounded-full px-md py-xs items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body font-body placeholder:text-on-surface-variant w-48" placeholder="Search spirits..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="cursor-pointer active:scale-95 duration-200 text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</button>
+<button class="cursor-pointer active:scale-95 duration-200 text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+<button class="flex items-center gap-xs bg-primary text-on-primary px-md py-xs rounded-full cursor-pointer active:scale-95 duration-200 font-body text-body">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span>Cart</span>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="hero-gradient text-on-primary-container py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-xl">
+<div class="z-10">
+<div class="inline-flex items-center gap-sm bg-secondary-container text-on-secondary-container px-md py-xs rounded-full mb-lg shadow-sm">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-badge text-badge">30 MINUTE DELIVERY GUARANTEED</span>
+</div>
+<h1 class="font-h1 text-[48px] md:text-[64px] leading-tight font-black mb-md text-white">
+                        Your favorite drinks, delivered in 30 mins.
+                    </h1>
+<p class="text-[18px] mb-xl text-primary-light/90 max-w-lg">
+                        Cold beers, aged whiskies, and fine wines from local stores straight to your door. No waiting, just pouring.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-md">
+<button class="h-[56px] px-xl bg-white text-primary rounded-xl font-bold flex items-center justify-center gap-sm shadow-xl hover:scale-105 transition-transform">
+                            Shop Now
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="h-[56px] px-xl bg-primary-container border-2 border-primary-fixed/30 text-white rounded-xl font-bold flex items-center justify-center gap-sm hover:bg-primary-container/80 transition-colors">
+                            Check Available Areas
+                        </button>
+</div>
+</div>
+<div class="relative hidden md:block">
+<div class="absolute -right-24 -top-24 w-96 h-96 bg-primary-fixed/20 rounded-full blur-3xl"></div>
+<div class="relative z-10 p-md bg-white/10 backdrop-blur-md rounded-[32px] border border-white/20 rotate-3">
+<div class="bg-cover bg-center h-[400px] rounded-[24px]" data-alt="A professional, high-end photography shot of an assorted selection of premium alcohol bottles including a dark amber single malt whisky, a crisp golden lager beer, and a deep red wine. The bottles are arranged artistically on a dark granite surface with soft condensation droplets on the cold beer bottle. The background is a soft-focus warm luxury bar interior with golden ambient lighting, perfectly reflecting the brand's premium quick-commerce identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7NBk73leWiWzqHzsZAkyPZMzaUVwt8AYtwhB3iRY-JPEVcNtFfNqZZDr3xsDfGZ09U76zs9VAK5Bjg5NkWN3r2yPOlrBbLrKcbTPT6G4sq4esy0_arvEyEnlhN3Rz__vuYz78b_adv4aGQzL5CA110n09smF6_0fQG-HSgDsYdoE5zFhvjgNkUGuf4jljGua9vQ5YWudzsNsNiOP2FSrlEaYFCEoGJLL-nEruZkFtUfq-YgZEv5GvHX9ln4W8brx20U4sf8IlFNk')"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Circles -->
+<section class="py-xl bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<h2 class="font-h2 text-h2 mb-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">category</span>
+                    Browse by Category
+                </h2>
+<div class="flex gap-lg overflow-x-auto category-scroll pb-md">
+<!-- Whisky -->
+<div class="flex-shrink-0 flex flex-col items-center gap-sm group cursor-pointer">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all border-2 border-transparent group-hover:border-primary overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close-up artistic shot of a golden amber liquid swirling in a crystal whisky glass. The lighting is warm and dramatic, highlighting the rich textures and viscous nature of the aged spirit. The background is a clean, neutral cream to maintain UI clarity for a category icon." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7amI241dAK3SIv73Y17kod_ZdLyRAJVKx_5l3-5SizR0QMCc3-yZx2MI6VZi3XZtMB6yLvsrZ9rWK3esg2Ime5dujR2H-YNPrDi17wtjWaHtsr9rTLhzpHC6Y55YT-Qc99rWnXMfizo3g_BqokJ4xiZei-MwWwfR1k-9Tqxa-Sg1XuI-T7cg0GiE9WDawN86NhSlUmNgk4HHwPQFmWectt26KBGA7yg5x6l3yXK01GDr43pbJ4TP73RUKLtH2jI7XbZOVrZAdtg8')"></div>
+</div>
+<span class="font-h3 text-h3">Whisky</span>
+</div>
+<!-- Beer -->
+<div class="flex-shrink-0 flex flex-col items-center gap-sm group cursor-pointer">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all border-2 border-transparent group-hover:border-primary overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro photograph of cold, golden lager beer with a perfect white frothy head. Tiny condensation bubbles are visible on the glass surface. The image is bright and refreshing, set against a clean minimalist light background for a beverage category selector." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmaAZRvZ2QavfgcL8ixa07lYAmRWXemdf8AMBPgJxQZO5Nn6Y59afl629IqAiOwAYT1rsR_hnRW6cf0wAzuWCMJ3U54eIuPHBtPMOrRVC1qrpm0MXpY_ydqJn9Qu4573b1z7AaUv563GIvU4J2eqFUJTV_5Hxw7mWMhNS1Ksi9YOhuUr-qCHoe_-xfeaQ0IqiimpAOX-ieFYB-x_t7Hte5pRRZbMgl4Up0OMMigWWNRy0ezOI2v_h6W7DuFmvHaMM3cwPh81g7WIo')"></div>
+</div>
+<span class="font-h3 text-h3">Beer</span>
+</div>
+<!-- Wine -->
+<div class="flex-shrink-0 flex flex-col items-center gap-sm group cursor-pointer">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all border-2 border-transparent group-hover:border-primary overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A deep ruby red wine being poured into a large glass, creating elegant waves. The lighting highlights the clarity and rich color of the wine. Minimalist and elegant style suitable for a luxury beverage delivery app interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBft72HGzwoUD5MmdKvnLKsLhzK6tat3alrwT-ax3PA99U73Jy7TmoCMRJ3rIGbJuuNUa4gfWTJj_Ggmbg2wcEZ_9TJXkZMJH3iUtpioMG3Oe1vR7I625l3UdiChjdVs3Ud9AAfg61Fe7R0nEllXR-V8zTOreZrpUz5EobPTeZNWNgfK47oNXB78T2i-R2FZ81fWEP-C7NmW1Bo6WZarq4uwpA1c0kBqm2vyh2fLZEmOg7zRVVhbbJjuhmnpcjop_P3BdP1C01obuk')"></div>
+</div>
+<span class="font-h3 text-h3">Wine</span>
+</div>
+<!-- Vodka -->
+<div class="flex-shrink-0 flex flex-col items-center gap-sm group cursor-pointer">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all border-2 border-transparent group-hover:border-primary overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A crystal clear shot of premium vodka over large ice cubes in a heavy glass. A fresh twist of lime zest adds a pop of color. The aesthetic is clean, sharp, and ice-cold, emphasizing purity and high-end quality for the vodka category icon." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCS0IIzGKFxmNsJpU0T9ImWYZIY5-qkfycfL9aNQrmu0NzIPtu85S_7VKp4THE-b9QOyMjbSSz-SckvSPR2B-Lkl0MdQaO58Xm3GhoIWkDiz1EGgunWUlJU7nNbrxLd9JgUHf0Q1fWK2DovxGCUZXiVtXnoETq6cR-pLDE_2sbpvIdA8kP3orX5r099PHUleUK3qvTYZzu6n7TNB1GaNw7QRHT8Trnu1MIZVNaqoi0iuocOZzgbYFSbPxlmpyvVy9cB_aBXzFds-d8')"></div>
+</div>
+<span class="font-h3 text-h3">Vodka</span>
+</div>
+<!-- Gin -->
+<div class="flex-shrink-0 flex flex-col items-center gap-sm group cursor-pointer">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all border-2 border-transparent group-hover:border-primary overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Artistic botanical gin shot with juniper berries and a sprig of rosemary. The clear liquid looks crisp and inviting. The lighting is bright and modern, aligned with a premium corporate aesthetic for alcohol delivery." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXSrlrB7bTIWMa7Qfp_xJw3vnWDXRO0C-_kPta363wFTJjCJH45PphkvHhPSwJJNmgBQba5BIyEjv8xA5XVQRP74bLgUuRW3Yxf3AV8vwS60UB6bynAiUQz7NRu5Z18baOTEce_vY_0J-kjAKekBDKlBJZSgb7urErF19_XfbDnp_1yOM-3plb3WVZkefmsdJihr1ffOtmjlMLDCx_ZNizSaDmJUwUgPp0zMaKVgr5r4XToFdiGG3YtnBoG61uaWkjMKoS6MJvf18')"></div>
+</div>
+<span class="font-h3 text-h3">Gin</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Near You -->
+<section class="py-24 px-margin-desktop max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-h1 text-h1 mb-xs">Trending Near You</h2>
+<p class="text-on-surface-variant font-body">Popular choices in your neighborhood right now.</p>
+</div>
+<button class="text-primary font-bold hover:underline flex items-center gap-xs">
+                    View all
+                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md md:gap-lg">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md product-card-shadow hover:translate-y-[-4px] transition-all flex flex-col group">
+<div class="relative mb-md">
+<span class="absolute top-2 left-2 bg-secondary-container text-on-secondary-container text-badge font-badge px-sm py-1 rounded shadow-sm z-10">BEST SELLER</span>
+<div class="aspect-square bg-surface-container-low rounded-lg bg-cover bg-center" data-alt="A premium bottle of single malt Scotch whisky standing on a minimalist wooden plinth. The bottle features a classic label with gold leaf details. Soft studio lighting from the side emphasizes the amber liquid within and the sleek glass bottle shape." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvU5ERW_Zbk9tZ3p3cbo7W7ZMO5crP7z736IJdlBySHaYcCGyyHLoOua54s_iOpViZvBHPWg1Cl6d8HI2dSd0NttOpByLtTOHO7jVZIdqnCuHeMuf1fuQow8ICnOhDkrWqrYA-XTxjMFp2wTkL570m75Nha_hXa9ZVN-yqc4FXR589JZe2GHgwlVjK7jo5rJpAGtAN_J_i1RSxQjM67MHnn1OcipPvsVVly6DoBq4aUVnRalY0KllpDYE5vSLBLU6qUe8kGfirx48')"></div>
+</div>
+<h3 class="font-h3 text-h3 mb-xs text-on-surface line-clamp-1">Glenfiddich 12 Year Old</h3>
+<p class="text-caption text-on-surface-variant mb-md">700ml • Single Malt</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price text-price text-primary">$45.99</span>
+<button class="w-10 h-10 rounded-full bg-primary-light text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md product-card-shadow hover:translate-y-[-4px] transition-all flex flex-col group">
+<div class="relative mb-md">
+<span class="absolute top-2 left-2 bg-primary-fixed text-on-primary-fixed-variant text-badge font-badge px-sm py-1 rounded shadow-sm z-10">TOP RATED</span>
+<div class="aspect-square bg-surface-container-low rounded-lg bg-cover bg-center" data-alt="A pack of 6 premium craft lager beer bottles. The bottles are brown glass with vibrant, modern labels featuring bold green and silver colors. The packaging looks cold and fresh with a few stylized ice shards in the background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCKP6jp_KyXl8JPZcZpY7jZF7qMHioMRtoi3TiCN8ScS2EBreNpZUh9WfUozbOFJ0XVS7DdOtI6vXCzb__iozuKfmhV43zA9P1uCkqxFD8_iH8CTtPaLe_cZZiBU9dSjJvZVd0MAmXTz9sUMNMN5oT9x6ecu6ULuaW3d9bLq2X6clt0nigKnrjDxILZekc0uv0KJ-rwTbXeJhdlQ0P6RYBinXREtlgqp2v3ZDStEuxNMBgtfI2mCLXi4mqEcZ8SHXpur9RorF0LUOc')"></div>
+</div>
+<h3 class="font-h3 text-h3 mb-xs text-on-surface line-clamp-1">Heineken Premium Lager</h3>
+<p class="text-caption text-on-surface-variant mb-md">6 x 330ml • Beer</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price text-price text-primary">$12.50</span>
+<button class="w-10 h-10 rounded-full bg-primary-light text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md product-card-shadow hover:translate-y-[-4px] transition-all flex flex-col group">
+<div class="relative mb-md">
+<div class="aspect-square bg-surface-container-low rounded-lg bg-cover bg-center" data-alt="A luxury bottle of Japanese whisky, Suntory Hibiki Harmony, known for its multifaceted bottle. The lighting highlights the intricate glass facets and the elegant calligraphy label. Professional product photography in a bright, clean light-mode setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8oG7HtfKAzk5fM3033tug-he18lIlCDyGcizCP8YC8r10_ZS2M0yTD4ZgioJVEUiVsQzkSCxQGIjYLlPTgU5O4_NGWBpG-nikw0qGqu5caER77YT-KsO0yiUJ_CgmhbeAZqAbE3lPNjrGcGImS_fvFS7pSkjfdnBCGeI5cd_GOi6NKCjW3T7hKmZHafV-rBJv92AcrLrtuDsIXh3EkGIxjXYGBGiOkgvuuTMvusfpz5LWDxueqcmjBzPPcnA3aNgmG77pym2pNgo')"></div>
+</div>
+<h3 class="font-h3 text-h3 mb-xs text-on-surface line-clamp-1">Suntory Hibiki Harmony</h3>
+<p class="text-caption text-on-surface-variant mb-md">700ml • Blended Malt</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price text-price text-primary">$89.00</span>
+<button class="w-10 h-10 rounded-full bg-primary-light text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-md product-card-shadow hover:translate-y-[-4px] transition-all flex flex-col group">
+<div class="relative mb-md">
+<span class="absolute top-2 left-2 bg-error-container text-on-error-container text-badge font-badge px-sm py-1 rounded shadow-sm z-10">LOW STOCK</span>
+<div class="aspect-square bg-surface-container-low rounded-lg bg-cover bg-center" data-alt="A case of popular wheat beer, Erdinger Weissbier. The large 500ml bottles are distinctive with their white and gold labeling. The image conveys a sense of traditional quality and chilled freshness." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYW7E6iBV1EuAGqrmeSO9jzGWUEcT1tmIpbcKzFTZBPzTudq3CpYbThFfbBQfsSCGC6CqcvpbYYG6fWOShQny-JIiZz4Lg8cXXfG2PCNYv350iSK5b7bXbhi3nbHi3Y7NcuMD00SJHfSJLneENqLP_udihuPENV_1t73Y4O2m-6yOXchX-_UPOloe3zX9K0D0U90Xoo4bxlGHhIzXKL64JSuZM7BA_y5TfCgtD5ENoQhDKD1CX48OUh9YjcQoD7kZHRtWPb1Cj_2U')"></div>
+</div>
+<h3 class="font-h3 text-h3 mb-xs text-on-surface line-clamp-1">Erdinger Weissbier</h3>
+<p class="text-caption text-on-surface-variant mb-md">500ml • Wheat Beer</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price text-price text-primary">$4.20</span>
+<button class="w-10 h-10 rounded-full bg-primary-light text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section / Banner -->
+<section class="max-w-7xl mx-auto px-margin-desktop mb-24">
+<div class="bg-surface-container-highest rounded-[32px] p-xl flex flex-col md:flex-row items-center justify-between gap-xl">
+<div class="flex items-center gap-lg">
+<div class="w-20 h-20 bg-primary-container rounded-2xl flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">arrow_left</span>
+</div>
+<div>
+<h3 class="font-h2 text-h2 text-primary">Flash Delivery</h3>
+<p class="text-on-surface-variant">We partner with local retailers to ensure your drinks arrive in under 30 minutes, or you get your next delivery free.</p>
+</div>
+</div>
+<button class="h-[56px] px-xl bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-sm w-full md:w-auto shadow-lg">
+                    Order Now
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-xl bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant py-xl px-margin-desktop flex flex-col items-center gap-md">
+<div class="flex flex-col items-center gap-sm">
+<img alt="DrinkIt Logo" class="h-12 w-auto mb-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2_ZphxDOzNwP1XQKaLp9kwNFXPqviJRAm8rQhPs-2VgpPZ4LRuwOLkWC_khjv8e7USTBriXLo4IzdZXu7rSJ8j0V1jCTIEidCWrGKRQDrFVdj3B0IuKCOZf1YoF8H5n7YEguakl3s-hnvQyXdjDvFxRso1k_1_s_cyQWB7jNitKr2db9aPnf_2k7V-mty39aGxsM9Uaaz70jKMPJTNiUc5xu5wKxIUEve5MHUMtbDRPCp1ViFBexTA8YnTrKquuXuJ_0q7Jbk03k"/>
+<div class="flex flex-wrap justify-center gap-lg mb-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Delivery Areas</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Trust Badges</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">smartphone</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">alternate_email</span>
+</div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant text-center max-w-lg">
+            © 2024 DrinkIt Technologies. Please drink responsibly. DrinkIt reminds you that alcohol consumption is for individuals 21+ only.
+        </p>
+</footer>
+<!-- SideNavBar (Mobile Bottom) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-high border-t border-outline-variant flex justify-around items-center py-sm px-md z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px]">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px]">Favorites</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="text-[10px]">Points</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+<span class="text-[10px]">Help</span>
+</button>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>

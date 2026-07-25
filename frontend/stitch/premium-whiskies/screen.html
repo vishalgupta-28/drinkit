@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DrinkIt | Premium Whisky Collection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#002203",
+                    "secondary-container": "#fec70f",
+                    "surface-tint": "#006e16",
+                    "secondary-fixed": "#ffdf93",
+                    "tertiary-fixed": "#e2e0fc",
+                    "tertiary-fixed-dim": "#c6c4df",
+                    "primary": "#006714",
+                    "on-primary-fixed-variant": "#00530e",
+                    "inverse-surface": "#2c322a",
+                    "secondary-fixed-dim": "#f4bf00",
+                    "surface-bright": "#f5fbee",
+                    "inverse-on-surface": "#ecf3e6",
+                    "secondary": "#765b00",
+                    "background": "#f5fbee",
+                    "danger": "#D32F2F",
+                    "surface-container-highest": "#dee5d8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e4eadd",
+                    "primary-container": "#0c831f",
+                    "surface-dim": "#d6dccf",
+                    "surface": "#F4F6F8",
+                    "on-tertiary-fixed-variant": "#45455b",
+                    "tertiary": "#57566e",
+                    "on-secondary-fixed-variant": "#594400",
+                    "surface-variant": "#dee5d8",
+                    "primary-fixed": "#8ffb87",
+                    "outline": "#6f7a6a",
+                    "on-secondary-container": "#6e5400",
+                    "on-surface": "#171d15",
+                    "gold-light": "#FFF8E1",
+                    "outline-variant": "#becab7",
+                    "error-container": "#ffdad6",
+                    "primary-light": "#E8F5E9",
+                    "on-background": "#171d15",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eaf0e3",
+                    "primary-fixed-dim": "#74dd6e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#e0ffd7",
+                    "on-secondary-fixed": "#241a00",
+                    "on-tertiary-fixed": "#1a1a2e",
+                    "surface-container-low": "#eff6e9",
+                    "on-tertiary-container": "#f9f5ff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#74dd6e",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#3f4a3c",
+                    "muted": "#6B7280",
+                    "tertiary-container": "#706f87",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "badge": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"],
+                    "body": ["Inter"],
+                    "price": ["Inter"],
+                    "caption": ["Inter"],
+                    "h1": ["Inter"]
+            },
+            "fontSize": {
+                    "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-shadow {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .custom-shadow-hover:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        body {
+            background-color: #F4F6F8;
+            color: #171d15;
+            font-family: 'Inter', sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky bg-surface-container-low dark:bg-inverse-surface shadow-sm z-50">
+<nav class="flex justify-between items-center px-margin-desktop py-md max-w-7xl mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-h2 text-h2 font-black text-primary dark:text-primary-fixed cursor-pointer">DrinkIt</span>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-body text-body text-primary font-bold border-b-2 border-primary pb-1" href="#">Whisky</a>
+<a class="font-body text-body text-on-surface-variant hover:text-primary transition-colors" href="#">Beer</a>
+<a class="font-body text-body text-on-surface-variant hover:text-primary transition-colors" href="#">Wine</a>
+<a class="font-body text-body text-on-surface-variant hover:text-primary transition-colors" href="#">Offers</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container border-none rounded-xl px-xl py-sm w-80 text-body focus:ring-2 focus:ring-primary" placeholder="Search brands or types..." type="text"/>
+<span class="material-symbols-rounded absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-xs cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-rounded text-on-surface-variant" style="font-variation-settings: 'FILL' 0">location_on</span>
+</button>
+<button class="p-xs cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-rounded text-on-surface-variant" style="font-variation-settings: 'FILL' 0">account_circle</span>
+</button>
+<button class="flex items-center gap-xs bg-primary text-on-primary px-md py-sm rounded-xl font-bold active:scale-95 duration-200">
+<span class="material-symbols-rounded">shopping_cart</span>
+<span class="font-body text-body">Cart</span>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-margin-desktop py-xl flex gap-xl">
+<!-- Sidebar Filters -->
+<aside class="w-64 flex-shrink-0 hidden md:block">
+<div class="flex flex-col gap-xl sticky top-32">
+<!-- Type Filter -->
+<div>
+<h3 class="font-h3 text-h3 mb-md">Category</h3>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-md cursor-pointer group">
+<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="font-body text-body text-primary font-bold">Single Malt</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary">Blended</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary">Bourbon</span>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div>
+<h3 class="font-h3 text-h3 mb-md">Price Range</h3>
+<div class="px-xs">
+<input class="w-full accent-primary mb-md" max="500" min="0" type="range"/>
+<div class="flex justify-between font-caption text-caption text-on-surface-variant">
+<span>$0</span>
+<span>$500+</span>
+</div>
+</div>
+</div>
+<!-- Brands -->
+<div>
+<h3 class="font-h3 text-h3 mb-md">Popular Brands</h3>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-md cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary">Macallan</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary">Glenfiddich</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary">Hibiki</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary">Johnnie Walker</span>
+</label>
+</div>
+</div>
+<button class="mt-md font-body text-body text-primary font-bold flex items-center gap-xs">
+                    Clear All Filters
+                </button>
+</div>
+</aside>
+<!-- Product Content -->
+<section class="flex-1">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Premium Whisky</h1>
+<p class="font-body text-body text-on-surface-variant mt-xs">Showing 24 of 152 exclusive malts</p>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-body text-body text-on-surface-variant">Sort by:</span>
+<select class="bg-transparent border-none font-bold text-primary focus:ring-0 cursor-pointer">
+<option>Most Popular</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Top Rated</option>
+</select>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow custom-shadow-hover transition-all duration-300 relative group">
+<div class="absolute top-md left-md z-10 flex flex-col gap-xs">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-1 rounded-lg font-badge text-badge uppercase tracking-wider">Top Rated</span>
+</div>
+<button class="absolute top-md right-md z-10 p-xs bg-white/80 backdrop-blur rounded-full text-on-surface-variant hover:text-danger">
+<span class="material-symbols-rounded">favorite</span>
+</button>
+<div class="w-full aspect-[4/5] rounded-lg mb-md bg-surface overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A premium bottle of single malt Scotch whisky with a deep amber color, presented on a dark wooden surface with soft, warm golden backlighting. The bottle has a sophisticated cream-colored label with elegant serif typography. The environment is a moody, high-end lounge setting with a hint of a crystal glass in the blurred background, emphasizing luxury and taste." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxfMGvxDNgxj00Nnab-LG4ZSE03mrHCvs3NDkev0RF_e9G2kxi5HuaIHoIfmrF7cCq7jk7dSLQ--DNMhTF74c7bWcwbfhXDrEJ2wvMbBOl22JVP_4qXPed90x5_HDhH668H1bb8eQZXyX6pd8E7mHQGk1hR7bRS-1t9TKed4MsUwRCEgfb-TyrSvl59h2_CDWvUNR1-uqGpCc1z6ogVD6AlUx6uSh9tQHX-mVnJ7KEKGlFTV7QNKtHbeql2y75mqhdm7WE7Z3FB0U"/>
+</div>
+<div class="flex flex-col gap-xs">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">The Macallan</p>
+<h3 class="font-h3 text-h3 line-clamp-1">12 Year Old Double Cask</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-rounded text-primary text-[16px]" style="font-variation-settings: 'FILL' 1">military_tech</span>
+<span class="font-badge text-badge text-primary">Earn 50 DrinkPoints</span>
+</div>
+<div class="flex justify-between items-center mt-md">
+<span class="font-price text-price text-primary">$84.99</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-rounded">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow custom-shadow-hover transition-all duration-300 relative group">
+<div class="absolute top-md left-md z-10 flex flex-col gap-xs">
+<span class="bg-primary text-on-primary px-sm py-1 rounded-lg font-badge text-badge uppercase tracking-wider">Bestseller</span>
+</div>
+<button class="absolute top-md right-md z-10 p-xs bg-white/80 backdrop-blur rounded-full text-on-surface-variant hover:text-danger">
+<span class="material-symbols-rounded">favorite</span>
+</button>
+<div class="w-full aspect-[4/5] rounded-lg mb-md bg-surface overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close up of a Japanese whisky bottle, specifically Hibiki Harmony, featuring a multi-faceted 24-sided glass design that catches the light beautifully. The lighting is crisp and bright, highlighting the golden liquid inside against a minimalist white background. The shot is clean, professional, and corporate modern, focusing on the craftsmanship and clarity of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS9wiqOq_CRDnBOoRrPTeYlVi6s_kEiV2Jphjjm8AchgK3W1Yu-G1n2d9Q1egMF2sp9u-145PD5cXCX7A5gaou9kNPVjvX2aTBJTOlwxGQ714rpzxQHKTosV2bW8erIyU4B6BkSqEhdMdqJiJrEHe427_f0jr0x4MPjDR4nTWc-1AyJJ7G9yOfFGd99o4b_EjWJQWRVkAF41Mizc5wAuGPse3BxS67MKBdA1JGcCzPW_lx3V7APvl6fY_Ztic6Udq4sCa6zqAkFMU"/>
+</div>
+<div class="flex flex-col gap-xs">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Suntory</p>
+<h3 class="font-h3 text-h3 line-clamp-1">Hibiki Japanese Harmony</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-rounded text-primary text-[16px]" style="font-variation-settings: 'FILL' 1">military_tech</span>
+<span class="font-badge text-badge text-primary">Earn 75 DrinkPoints</span>
+</div>
+<div class="flex justify-between items-center mt-md">
+<span class="font-price text-price text-primary">$112.50</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-rounded">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow custom-shadow-hover transition-all duration-300 relative group">
+<button class="absolute top-md right-md z-10 p-xs bg-white/80 backdrop-blur rounded-full text-on-surface-variant hover:text-danger">
+<span class="material-symbols-rounded">favorite</span>
+</button>
+<div class="w-full aspect-[4/5] rounded-lg mb-md bg-surface overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A bottle of Lagavulin 16 Year Old Islay Single Malt Scotch Whisky on a rugged, dark slate surface. Smoke swirls subtly in the background under cold, dramatic blue and white lighting, hinting at the peaty, smoky flavor profile. The image has a premium, moody aesthetic with high contrast and sharp focus on the traditional green glass and detailed label." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXh_Yr-TpS5q0DGLbKHBBbNXSM_medBvlYYp2a8nww71uKZ_doFC0LwlajmuQ2cOr5n9ZF6fYxqF77esH_bq5m16EACv0fNki5Hzgf-oi0BwZU2ebE6qebM4pIoAiBVOMdght_Xf0EPQVUFpEz8XH3tQMCJk7EtbdWe81k7HRcDVpqwn0nDmNDAIn2YwWSgyWZrRu4aQJ5vplKy9s7mn5j2OuV40Ib5tnjj7l79WiD0l3bmu86WQZBT25XQVlLTPiUMNoQUum_mNI"/>
+</div>
+<div class="flex flex-col gap-xs">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Lagavulin</p>
+<h3 class="font-h3 text-h3 line-clamp-1">16 Year Old Islay Single Malt</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-rounded text-primary text-[16px]" style="font-variation-settings: 'FILL' 1">military_tech</span>
+<span class="font-badge text-badge text-primary">Earn 60 DrinkPoints</span>
+</div>
+<div class="flex justify-between items-center mt-md">
+<span class="font-price text-price text-primary">$98.00</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-rounded">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow custom-shadow-hover transition-all duration-300 relative group">
+<div class="absolute top-md left-md z-10 flex flex-col gap-xs">
+<span class="bg-error text-on-error px-sm py-1 rounded-lg font-badge text-badge uppercase tracking-wider">Limited Edition</span>
+</div>
+<button class="absolute top-md right-md z-10 p-xs bg-white/80 backdrop-blur rounded-full text-on-surface-variant hover:text-danger">
+<span class="material-symbols-rounded">favorite</span>
+</button>
+<div class="w-full aspect-[4/5] rounded-lg mb-md bg-surface overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A rare Glenfiddich 21 Year Old Reserva Rum Cask Finish bottle in its ornate presentation box. The lighting is warm and directional, highlighting the rich mahogany wood of the box and the deep gold of the whisky. The setting is an elegant, library-like atmosphere with leather and dark wood, communicating exclusivity and premium heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOQzOPbAXp0bgSUz0STnMfu-e9RvBUc6HCTiW0Wcnj789TqErqRGcSmfFtIxacmiYuof2bHmnVuwnkQYJaEj0fLIlQiDqd5R2C5CqrRtMGZrTOR1qclA2zM0JJtQl6PQhwykpB4kMDL-nxEbZUFCXs7nsT7S4BS5L6Cv5ulLlbavTVjHB1tqmE1HVAuFzeoomMzOzWIHL-VQEoRgpCxEnEgB_NAkHdHPxk3t7REEL9-qpGr59J8KqBo6xlayJHG36KoRuGyLvaCbE"/>
+</div>
+<div class="flex flex-col gap-xs">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Glenfiddich</p>
+<h3 class="font-h3 text-h3 line-clamp-1">21 Year Old Reserva Rum Cask</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-rounded text-primary text-[16px]" style="font-variation-settings: 'FILL' 1">military_tech</span>
+<span class="font-badge text-badge text-primary">Earn 150 DrinkPoints</span>
+</div>
+<div class="flex justify-between items-center mt-md">
+<span class="font-price text-price text-primary">$210.00</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-rounded">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow custom-shadow-hover transition-all duration-300 relative group">
+<button class="absolute top-md right-md z-10 p-xs bg-white/80 backdrop-blur rounded-full text-on-surface-variant hover:text-danger">
+<span class="material-symbols-rounded">favorite</span>
+</button>
+<div class="w-full aspect-[4/5] rounded-lg mb-md bg-surface overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A bottle of Woodford Reserve Bourbon sitting on a modern bar counter. Behind it, glowing orange backlights create a vibrant, energetic atmosphere. The bottle's square shape is prominent, and the image focus is sharp on the label text. The overall vibe is quick-commerce lifestyle - fun, accessible, but still maintaining a premium high-contrast quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRTAoUooYItG1NSh4ueWP6NGlxpkAflXrC18OuMCON5-Aw3dhZr18HpdumOE3Cn6So2hrs-OUIwLebxCbj6fcFIWvz6ZRuuV349t0jxMQH26uyxtwiPPnO9BTes4MkHkdhUME1-CVcL6aJILYGv62b59T7iivhJt3old7dFU06t4vEN3ixMw0gbbldtPn18DDpbSBqG0xJC4VRi8Xdfgsw6mPLSJcUXQ48Oks0dquFklJzTVdEoORLJ-RJxZ-UhAkPulEBpKtHpME"/>
+</div>
+<div class="flex flex-col gap-xs">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Woodford Reserve</p>
+<h3 class="font-h3 text-h3 line-clamp-1">Distiller's Select Bourbon</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-rounded text-primary text-[16px]" style="font-variation-settings: 'FILL' 1">military_tech</span>
+<span class="font-badge text-badge text-primary">Earn 30 DrinkPoints</span>
+</div>
+<div class="flex justify-between items-center mt-md">
+<span class="font-price text-price text-primary">$49.99</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-rounded">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow custom-shadow-hover transition-all duration-300 relative group">
+<div class="absolute top-md left-md z-10 flex flex-col gap-xs">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-1 rounded-lg font-badge text-badge uppercase tracking-wider">Trending</span>
+</div>
+<button class="absolute top-md right-md z-10 p-xs bg-white/80 backdrop-blur rounded-full text-on-surface-variant hover:text-danger">
+<span class="material-symbols-rounded">favorite</span>
+</button>
+<div class="w-full aspect-[4/5] rounded-lg mb-md bg-surface overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A clean, minimalist product shot of Johnnie Walker Blue Label. The blue glass bottle stands tall against a gradients of light blue and white. The lighting is soft and high-key, emphasizing the luxury status of the brand. There is a sense of airy lightness and premium purity in the composition, fitting for a top-tier collection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo-M18YjCRVnFRxGfoyth5lLvxlVXzRCHEsNFQBE9LjZXjahCmmbrdMcfkZi02EqM7wv_Bby1wEhwiAOm7sZNX8uCSK5uaqQ03GYL8gQmGNkIpMY3Lw1jIYWchwx3fGQWNA-hZPW3YwcCYCeXNHnpK1whrFMRxclkd52rD6avL2sdD7Y4EHcPXl7H6z2LwwtNBTV2XPLgw-g1LLdzF24omFkKDY_g8PtPO9PAZR1wtNHlwmk-rGMIuDDyqjTV4iGlYgGcSvPPN2pQ"/>
+</div>
+<div class="flex flex-col gap-xs">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Johnnie Walker</p>
+<h3 class="font-h3 text-h3 line-clamp-1">Blue Label Blended Scotch</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-rounded text-primary text-[16px]" style="font-variation-settings: 'FILL' 1">military_tech</span>
+<span class="font-badge text-badge text-primary">Earn 120 DrinkPoints</span>
+</div>
+<div class="flex justify-between items-center mt-md">
+<span class="font-price text-price text-primary">$189.00</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-rounded">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-xl py-lg flex justify-center items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-rounded">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-xl font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all">8</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-rounded">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Side Navigation Bar (Mobile Drawer Simulation logic or static desktop) -->
+<div class="fixed left-0 top-0 h-screen w-64 bg-surface-container-low dark:bg-surface-container-high shadow-md hidden lg:flex flex-col py-lg px-md z-[60] transition-transform -translate-x-full" id="sideNav">
+<div class="mb-xl px-md">
+<span class="font-h3 text-h3 font-bold text-primary">DrinkIt</span>
+<p class="font-caption text-caption text-on-surface-variant mt-xs">Welcome Back, Alex</p>
+<div class="bg-primary-light dark:bg-primary-container/20 p-md rounded-xl mt-md">
+<p class="font-caption text-caption text-on-surface-variant">1,250 DrinkPoints</p>
+<button class="w-full mt-sm py-xs bg-primary text-on-primary rounded-lg font-bold text-badge uppercase">Redeem Points</button>
+</div>
+</div>
+<nav class="flex flex-col gap-sm flex-1">
+<a class="flex items-center gap-md px-md py-sm rounded-xl text-primary font-bold border-r-4 border-primary bg-primary-light" href="#">
+<span class="material-symbols-rounded">home</span>
+<span class="font-body text-body">Home</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-rounded">receipt_long</span>
+<span class="font-body text-body">My Orders</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-rounded">military_tech</span>
+<span class="font-body text-body">Loyalty (DrinkPoints)</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-rounded">favorite</span>
+<span class="font-body text-body">Favorites</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-rounded">help</span>
+<span class="font-body text-body">Help</span>
+</a>
+</nav>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-xl bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant">
+<div class="flex flex-col items-center gap-md py-xl px-margin-desktop w-full max-w-7xl mx-auto">
+<span class="font-h3 text-h3 font-bold text-primary">DrinkIt</span>
+<div class="flex flex-wrap justify-center gap-xl">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Delivery Areas</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Trust Badges</a>
+</div>
+<p class="font-caption text-caption text-on-surface dark:text-on-surface-variant mt-md text-center">
+                © 2024 DrinkIt Technologies. Please drink responsibly.
+            </p>
+</div>
+</footer>
+<!-- Interactive Layer for adding items -->
+<div class="fixed bottom-xl left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-xl py-md rounded-full font-bold shadow-lg transform translate-y-32 transition-transform duration-300 z-[100] flex items-center gap-md" id="toast">
+<span class="material-symbols-rounded text-primary-fixed">check_circle</span>
+<span>Item added to your cart!</span>
+</div>
+<script>
+        // Micro-interactions
+        const addButtons = document.querySelectorAll('button:has(span:contains("add"))');
+        const toast = document.getElementById('toast');
+
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.querySelector('.material-symbols-rounded')?.textContent === 'add') {
+                btn.addEventListener('click', () => {
+                    toast.classList.remove('translate-y-32');
+                    toast.classList.add('-translate-y-8');
+                    setTimeout(() => {
+                        toast.classList.add('translate-y-32');
+                        toast.classList.remove('-translate-y-8');
+                    }, 3000);
+                });
+            }
+        });
+
+        // Filter interactivity mock
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const label = e.target.closest('label').querySelector('span');
+                if (e.target.checked) {
+                    label.classList.add('text-primary', 'font-bold');
+                    label.classList.remove('text-on-surface-variant');
+                } else {
+                    label.classList.remove('text-primary', 'font-bold');
+                    label.classList.add('text-on-surface-variant');
+                }
+            });
+        });
+    </script>
+</body></html>

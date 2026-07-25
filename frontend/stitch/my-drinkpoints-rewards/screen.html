@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#002203",
+                    "secondary-container": "#fec70f",
+                    "surface-tint": "#006e16",
+                    "secondary-fixed": "#ffdf93",
+                    "tertiary-fixed": "#e2e0fc",
+                    "tertiary-fixed-dim": "#c6c4df",
+                    "primary": "#006714",
+                    "on-primary-fixed-variant": "#00530e",
+                    "inverse-surface": "#2c322a",
+                    "secondary-fixed-dim": "#f4bf00",
+                    "surface-bright": "#f5fbee",
+                    "inverse-on-surface": "#ecf3e6",
+                    "secondary": "#765b00",
+                    "background": "#f5fbee",
+                    "danger": "#D32F2F",
+                    "surface-container-highest": "#dee5d8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e4eadd",
+                    "primary-container": "#0c831f",
+                    "surface-dim": "#d6dccf",
+                    "surface": "#F4F6F8",
+                    "on-tertiary-fixed-variant": "#45455b",
+                    "tertiary": "#57566e",
+                    "on-secondary-fixed-variant": "#594400",
+                    "surface-variant": "#dee5d8",
+                    "primary-fixed": "#8ffb87",
+                    "outline": "#6f7a6a",
+                    "on-secondary-container": "#6e5400",
+                    "on-surface": "#171d15",
+                    "gold-light": "#FFF8E1",
+                    "outline-variant": "#becab7",
+                    "error-container": "#ffdad6",
+                    "primary-light": "#E8F5E9",
+                    "on-background": "#171d15",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eaf0e3",
+                    "primary-fixed-dim": "#74dd6e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#e0ffd7",
+                    "on-secondary-fixed": "#241a00",
+                    "on-tertiary-fixed": "#1a1a2e",
+                    "surface-container-low": "#eff6e9",
+                    "on-tertiary-container": "#f9f5ff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#74dd6e",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#3f4a3c",
+                    "muted": "#6B7280",
+                    "tertiary-container": "#706f87",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "badge": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"],
+                    "body": ["Inter"],
+                    "price": ["Inter"],
+                    "caption": ["Inter"],
+                    "h1": ["Inter"]
+            },
+            "fontSize": {
+                    "badge": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "h2": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "h1": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .reward-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(118, 91, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky bg-surface-container-low dark:bg-inverse-surface shadow-sm z-50">
+<nav class="flex justify-between items-center px-margin-desktop py-md max-w-7xl mx-auto">
+<div class="font-h2 text-h2 font-black text-primary dark:text-primary-fixed">DrinkIt</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Whisky</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Beer</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Wine</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body text-body" href="#">Offers</a>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden sm:flex items-center bg-surface-container-high px-md py-xs rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body w-32 lg:w-64" placeholder="Search..." type="text"/>
+</div>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined p-xs text-on-surface hover:bg-primary-light rounded-full transition-all cursor-pointer active:scale-95 duration-200">location_on</button>
+<button class="material-symbols-outlined p-xs text-on-surface hover:bg-primary-light rounded-full transition-all cursor-pointer active:scale-95 duration-200">account_circle</button>
+<button class="flex items-center gap-xs bg-primary text-on-primary px-md py-xs rounded-full font-bold hover:bg-primary-container transition-all cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+                        Cart
+                    </button>
+</div>
+</div>
+</nav>
+</header>
+<div class="flex max-w-7xl mx-auto min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 sticky top-16 py-lg px-md bg-surface-container-low dark:bg-surface-container-high shadow-md">
+<div class="mb-xl px-sm">
+<h3 class="font-h3 text-h3 font-bold text-primary">Welcome Back</h3>
+<p class="text-on-surface-variant font-caption text-caption">1,250 DrinkPoints</p>
+</div>
+<div class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all duration-300" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body text-body">Home</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all duration-300" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body text-body">My Orders</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-primary font-bold border-r-4 border-primary bg-primary-light dark:bg-primary-container/20 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-body text-body">Loyalty (DrinkPoints)</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all duration-300" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body text-body">Favorites</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all duration-300" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body text-body">Help</span>
+</a>
+</div>
+<button class="mt-auto bg-secondary text-on-secondary px-lg py-md rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                Redeem Points
+            </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-grow p-margin-mobile md:p-xl space-y-xl">
+<!-- Hero Points Card -->
+<section class="relative overflow-hidden rounded-xl bg-gradient-to-br from-secondary to-secondary-container p-xl text-on-secondary shadow-lg">
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-lg">
+<div>
+<h1 class="font-h1 text-h1 mb-xs">Your DrinkPoints</h1>
+<p class="opacity-90 font-body text-body">Unlock a world of premium sips and exclusive experiences.</p>
+</div>
+<div class="flex items-center gap-md bg-white/20 backdrop-blur-md p-lg rounded-xl border border-white/30">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<div>
+<div class="text-[40px] font-black leading-none text-white">1,250</div>
+<div class="font-bold text-secondary-fixed">GOLD LEVEL</div>
+</div>
+</div>
+</div>
+<!-- Subtle background animation placeholder -->
+
+</section>
+<!-- Rewards Grid -->
+<section>
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface">Redeem for Rewards</h2>
+<p class="text-on-surface-variant font-body text-body">Trade your points for these exclusive perks.</p>
+</div>
+<a class="text-primary font-bold hover:underline flex items-center gap-xs" href="#">
+                        View All <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Reward 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-300 reward-card-hover group">
+<div class="h-48 relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A cold, condensation-covered glass of premium craft beer with a rich amber hue, captured in professional studio lighting on a dark background. The scene is elegant and high-contrast, fitting a premium beverage delivery brand's aesthetic. Small bubbles rise through the liquid, highlighting its freshness and quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqAaZnEhM7RxrhIf2ozhwbMPz8SvXlxwyOyhJIXZND3HmJVqoFo0ZOP2FhCznLORUE_zQMIOp2djsnXjxy9GLfBNsJMoTULXhCBPh1rz7DZ0kxwIkJTkXjScGzCTeLoAst2wn3h9JecBoOjOUtESK4h-BzYebQvFgEFeF7d-ywU24cYlyuCBy1jXlqCeErG2jOJyaudpFpgonPKrpMMn-RKX_O9QnvrkzYJeWMTnd1InC-VqgQkj5qQvh9mz2sgQY_bPMlIVkvDec')"></div>
+<div class="absolute top-md left-md bg-secondary text-white px-md py-xs rounded-full font-badge text-badge">500 PTS</div>
+</div>
+<div class="p-md">
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">Free Craft Beer</h3>
+<p class="text-on-surface-variant font-body text-body mb-lg">Redeem for any local craft pint on your next order.</p>
+<button class="w-full bg-primary-light text-primary py-md rounded-lg font-bold hover:bg-primary hover:text-white transition-all active:scale-95">Claim Now</button>
+</div>
+</div>
+<!-- Reward 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-300 reward-card-hover group">
+<div class="h-48 relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A row of luxury scotch whisky bottles on a polished mahogany bar shelf. Warm, atmospheric lighting creates golden reflections on the glass and liquid inside. The focus is sharp on one premium bottle in the foreground with an intricate label, conveying a sense of exclusivity and top-tier quality for a luxury rewards program." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAH9rJttnfa9FU9NAhzFsJBeunw5uFdovxpUROA0GDVRAL_NskzHmAH8RSybn15Lvm4naROwWqAdKiM-hS7xvfNQcTTCXj04U90qPa48zzmFL8dt_yjDQO-XzPzRT1aSsT0lzGxM4NBLEfmPR2KvQNfcDY2CL4gp-oLQysfpTU_JFWdZ_-pYvMgVitiLKiztx06c_UvME35VuAOM9PxWnXKNZ_Ulg5erWUsCNu8bDJZNvOxp2kj85JeSdTvJZrfqgZsUYb6kDZcgKg')"></div>
+<div class="absolute top-md left-md bg-secondary text-white px-md py-xs rounded-full font-badge text-badge">1,000 PTS</div>
+</div>
+<div class="p-md">
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">20% Off Premium Bottles</h3>
+<p class="text-on-surface-variant font-body text-body mb-lg">Unlock a deep discount on our curated cellar collection.</p>
+<button class="w-full bg-primary-light text-primary py-md rounded-lg font-bold hover:bg-primary hover:text-white transition-all active:scale-95">Claim Now</button>
+</div>
+</div>
+<!-- Reward 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-300 reward-card-hover group">
+<div class="h-48 relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="An exclusive rooftop lounge at dusk, softly lit with golden string lights and sleek modern furniture. Elegant people are seen in silhouette enjoying cocktails against a vibrant city skyline. The vibe is sophisticated, urban, and highly desirable, representing a VIP party access reward for loyal customers." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDD6URetBdDr8ou9okysGyZNUAVuGZBVb58QM4ZH-Rr-HmhG4BRt9PgdyK7ppCz4aletC5lL2htYNVKYyPGXdU7QLCKJsAIrVrCjZLXp-TQjd8OpZ6RlZVtpGNik3OWCcU-U1JF633fzsRSrjlcpl-pe2cFWlkRvxPspcCTs4fYpOZtbSZmFIHpQsMmoYpBmh_ONYZRkO40Ctgp7MuzlbtEJplW-b8T91tAHWudcrn6dyGGrnVGdQSrTsw03M72JDfVYNWbWXjj2Bg')"></div>
+<div class="absolute top-md left-md bg-secondary text-white px-md py-xs rounded-full font-badge text-badge">2,500 PTS</div>
+</div>
+<div class="p-md">
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">VIP Party Access</h3>
+<p class="text-on-surface-variant font-body text-body mb-lg">Invitation to our secret monthly Mixology Nights.</p>
+<button class="w-full bg-surface-variant text-on-surface-variant py-md rounded-lg font-bold opacity-50 cursor-not-allowed">Need more points</button>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works Timeline -->
+<section class="bg-gold-light rounded-xl p-xl border border-secondary-fixed/50">
+<div class="text-center mb-xl">
+<h2 class="font-h2 text-h2 text-secondary">How DrinkPoints Works</h2>
+<p class="text-on-secondary-fixed-variant max-w-lg mx-auto font-body text-body">Level up your ordering game. The more you sip, the more you earn.</p>
+</div>
+<div class="relative">
+<!-- Progress Line (Desktop) -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-secondary-fixed -translate-y-1/2"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl relative">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-md border-4 border-secondary-fixed mb-md relative z-10 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-secondary text-3xl">shopping_basket</span>
+</div>
+<h4 class="font-h3 text-h3 text-on-surface font-bold">1. Order Drinks</h4>
+<p class="text-on-surface-variant font-caption text-caption px-md">Earn 10 points for every $1 spent across our entire catalog.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-md border-4 border-secondary-fixed mb-md relative z-10 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-secondary text-3xl">trending_up</span>
+</div>
+<h4 class="font-h3 text-h3 text-on-surface font-bold">2. Stack Points</h4>
+<p class="text-on-surface-variant font-caption text-caption px-md">Accumulate points automatically. No complicated cards or codes.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-md border-4 border-secondary-fixed mb-md relative z-10 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">card_giftcard</span>
+</div>
+<h4 class="font-h3 text-h3 text-on-surface font-bold">3. Get Rewarded</h4>
+<p class="text-on-surface-variant font-caption text-caption px-md">Redeem points for drinks, discounts, or exclusive events.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-xl bg-surface-container-highest border-t border-outline-variant flex flex-col items-center gap-md py-xl px-margin-desktop">
+<div class="font-h3 text-h3 font-bold text-primary">DrinkIt</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Delivery Areas</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-caption text-caption" href="#">Trust Badges</a>
+</div>
+<p class="text-on-surface dark:text-on-surface-variant font-caption text-caption text-center max-w-md">
+            © 2024 DrinkIt Technologies. Please drink responsibly. DrinkIt reminds you to never drink and drive.
+        </p>
+</footer>
+<!-- Bottom Nav (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant grid grid-cols-4 py-sm z-50">
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-bold">Search</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="text-[10px] font-bold">Loyalty</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+</div>
+<script>
+        // Micro-interaction for claiming buttons
+        document.querySelectorAll('button:contains("Claim Now")').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerText;
+                this.innerText = 'Redeeming...';
+                this.classList.add('animate-pulse');
+                setTimeout(() => {
+                    this.innerText = 'Success!';
+                    this.classList.remove('animate-pulse');
+                    this.classList.add('bg-primary', 'text-white');
+                    setTimeout(() => {
+                        this.innerText = originalText;
+                        this.classList.remove('bg-primary', 'text-white');
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // Add custom selector for :contains because standard JS doesn't have it
+        window.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.getElementsByTagName('button');
+            for (let btn of buttons) {
+                if (btn.textContent.includes('Claim Now')) {
+                    btn.addEventListener('click', function() {
+                        const originalText = this.textContent;
+                        this.textContent = 'Redeeming...';
+                        this.classList.add('animate-pulse');
+                        setTimeout(() => {
+                            this.textContent = 'Reward Claimed!';
+                            this.classList.remove('animate-pulse');
+                            this.classList.replace('bg-primary-light', 'bg-primary');
+                            this.classList.replace('text-primary', 'text-white');
+                            setTimeout(() => {
+                                this.textContent = originalText;
+                                this.classList.replace('bg-primary', 'bg-primary-light');
+                                this.classList.replace('text-white', 'text-primary');
+                            }, 3000);
+                        }, 1000);
+                    });
+                }
+            }
+        });
+    </script>
+</body></html>
