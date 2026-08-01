@@ -16,7 +16,14 @@ async def get_db():
 
 @router.get("/zones")
 async def list_zones(db: AsyncSession = Depends(get_db)):
-    rows = (await db.execute(text("SELECT id, name, slug, city FROM zones ORDER BY name"))).mappings().all()
+    rows = (
+        await db.execute(
+            text(
+                "SELECT id, name, slug, city, state, is_serviceable "
+                "FROM zones ORDER BY is_serviceable DESC, name"
+            )
+        )
+    ).mappings().all()
     return [dict(r) for r in rows]
 
 

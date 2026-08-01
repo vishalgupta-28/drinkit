@@ -5,6 +5,7 @@ import { useZoneStore } from "@/store/zoneStore";
 import { useCartStore } from "@/store/cartStore";
 import { useRewardsStore } from "@/store/rewardsStore";
 import { useUserStore } from "@/store/userStore";
+import { useAddressStore } from "@/store/addressStore";
 
 /**
  * Stores use `skipHydration: true` so the server and the client's first paint
@@ -17,6 +18,7 @@ function useStoreHydration() {
     useCartStore.persist.rehydrate();
     useRewardsStore.persist.rehydrate();
     useUserStore.persist.rehydrate();
+    useAddressStore.persist.rehydrate();
   }, []);
 }
 

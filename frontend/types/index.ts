@@ -11,6 +11,17 @@ export interface Zone {
   name: string; // "Delhi NCR"
   slug: string; // "delhi"
   city: string;
+  serviceable?: boolean; // false for dry states (no alcohol delivery)
+}
+
+export interface Address {
+  fullName: string;
+  phone: string;
+  line1: string; // house / flat / street
+  landmark?: string;
+  city: string;
+  state: string;
+  pincode: string;
 }
 
 export interface Shop {

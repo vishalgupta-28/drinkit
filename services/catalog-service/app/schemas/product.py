@@ -16,5 +16,6 @@ class ProductOut(BaseModel):
     mrp: Optional[float] = None
     stock: int
     shop_id: Optional[UUID] = None
+    is_serviceable: bool = True  # false for dry states (no delivery)
     # Convenience for the UI
     points_earned: int  # 1 pt per ₹10
