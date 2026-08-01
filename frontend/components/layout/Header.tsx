@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  Search, ChevronDown, ShoppingCart, MapPin, Check,
+  Search, ChevronDown, ShoppingCart, Check, Ban,
   User, LogOut, Trophy, Package, Coins,
 } from "lucide-react";
 import { useZoneStore } from "@/store/zoneStore";
@@ -31,9 +31,20 @@ export function Header() {
   const status = useStoreStatus();
 
   const [locOpen, setLocOpen] = useState(false);
+  const [locQuery, setLocQuery] = useState("");
   const [acctOpen, setAcctOpen] = useState(false);
   const [ph, setPh] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Filter locations by typed query (name / city). Empty query -> no list,
+  // so we never dump all states at once.
+  const locResults = useMemo(() => {
+    const t = locQuery.trim().toLowerCase();
+    if (!t) return [];
+    return ZONES.filter(
+      (z) => z.name.toLowerCase().includes(t) || z.city.toLowerCase().includes(t),
+    ).slice(0, 8);
+  }, [locQuery]);
 
   // rotating search placeholder
   useEffect(() => {
@@ -88,32 +99,59 @@ export function Header() {
 
           {locOpen && (
             <div className="glass absolute left-0 top-full z-50 mt-2 w-72 rounded-xl2 border border-white/60 p-3 shadow-xl">
-              <p className="mb-2 flex items-center gap-1 text-xs font-semibold text-muted">
-                <MapPin size={13} /> Select delivery city — prices vary
-              </p>
-              <div className="grid gap-1.5">
-                {ZONES.map((z) => {
-                  const active = z.slug === zone.slug;
-                  return (
-                    <button
-                      key={z.slug}
-                      onClick={() => {
-                        setZone(z);
-                        setShopName(ZONE_SHOP[z.slug] ?? "Local Store");
-                        setLocOpen(false);
-                      }}
-                      className={`flex items-center justify-between rounded-lg border p-2.5 text-left text-sm ${
-                        active ? "border-primary bg-primary-light text-primary" : "border-gray-200 bg-white/60"
-                      }`}
-                    >
-                      <span>
-                        <span className="font-semibold">{z.name}</span>
-                        <span className="block text-xs text-muted">{ZONE_SHOP[z.slug]}</span>
-                      </span>
-                      {active && <Check size={16} />}
-                    </button>
-                  );
-                })}
+              {/* Search box — type your place */}
+              <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white/70 px-2.5 py-2">
+                <Search size={15} className="text-muted" />
+                <input
+                  autoFocus
+                  value={locQuery}
+                  onChange={(e) => setLocQuery(e.target.value)}
+                  placeholder="Search your city or state…"
+                  className="w-full bg-transparent text-sm outline-none"
+                />
+              </div>
+
+              <div className="mt-2 max-h-72 overflow-y-auto">
+                {locQuery.trim() === "" ? (
+                  <p className="px-1 py-3 text-xs text-muted">
+                    Start typing to find your delivery location — e.g. “Goa”, “Delhi”, “Mumbai”.
+                  </p>
+                ) : locResults.length === 0 ? (
+                  <p className="px-1 py-3 text-xs text-muted">No matching location for “{locQuery}”.</p>
+                ) : (
+                  <div className="grid gap-1.5">
+                    {locResults.map((z) => {
+                      const active = z.slug === zone.slug;
+                      const dry = z.serviceable === false;
+                      return (
+                        <button
+                          key={z.slug}
+                          onClick={() => {
+                            setZone(z);
+                            setShopName(ZONE_SHOP[z.slug] ?? "Local Store");
+                            setLocOpen(false);
+                            setLocQuery("");
+                          }}
+                          className={`flex items-center justify-between rounded-lg border p-2.5 text-left text-sm ${
+                            active ? "border-primary bg-primary-light text-primary" : "border-gray-200 bg-white/60"
+                          }`}
+                        >
+                          <span className="min-w-0">
+                            <span className="font-semibold">{z.name}</span>
+                            <span className="block truncate text-xs text-muted">
+                              {dry ? "No delivery (dry state)" : `${z.city} · ${ZONE_SHOP[z.slug]}`}
+                            </span>
+                          </span>
+                          {active ? (
+                            <Check size={16} className="shrink-0" />
+                          ) : dry ? (
+                            <Ban size={15} className="shrink-0 text-danger" />
+                          ) : null}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           )}

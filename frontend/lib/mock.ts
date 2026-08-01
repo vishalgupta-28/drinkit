@@ -1,25 +1,49 @@
 import type { Product, Zone } from "@/types";
 
-export const ZONES: Zone[] = [
-  { id: "1", name: "Delhi NCR", slug: "delhi", city: "Delhi" },
-  { id: "2", name: "Gurugram", slug: "gurugram", city: "Gurugram" },
-  { id: "3", name: "Noida", slug: "noida", city: "Noida" },
-  { id: "4", name: "Bengaluru", slug: "bengaluru", city: "Bengaluru" },
-  { id: "5", name: "Mumbai", slug: "mumbai", city: "Mumbai" },
-];
+// state slug -> { display, city, tax multiplier vs Delhi base, serviceable }
+// Dry states (serviceable=false) cannot receive alcohol delivery by law.
+type ZoneDef = { name: string; city: string; mult: number; serviceable: boolean; shop: string };
 
-// Default shop shown per zone in the LocationBar
-export const ZONE_SHOP: Record<string, string> = {
-  delhi: "Sharma Wines",
-  gurugram: "Cyber Hub Liquor",
-  noida: "Sector 18 Cellars",
-  bengaluru: "MG Road Spirits",
-  mumbai: "Bandra Bottle Co.",
+const ZONE_DEFS: Record<string, ZoneDef> = {
+  delhi:          { name: "Delhi NCR",         city: "Delhi",              mult: 1.0,   serviceable: true,  shop: "Sharma Wines" },
+  gurugram:       { name: "Gurugram",          city: "Gurugram",           mult: 0.667, serviceable: true,  shop: "Cyber Hub Liquor" },
+  maharashtra:    { name: "Maharashtra",       city: "Mumbai",             mult: 1.20,  serviceable: true,  shop: "Bandra Bottle Co." },
+  karnataka:      { name: "Karnataka",         city: "Bengaluru",          mult: 1.30,  serviceable: true,  shop: "MG Road Spirits" },
+  kerala:         { name: "Kerala",            city: "Thiruvananthapuram", mult: 1.35,  serviceable: true,  shop: "Kochi Cellars" },
+  "tamil-nadu":   { name: "Tamil Nadu",        city: "Chennai",            mult: 1.10,  serviceable: true,  shop: "Marina Wines" },
+  telangana:      { name: "Telangana",         city: "Hyderabad",          mult: 1.15,  serviceable: true,  shop: "Hitech Liquors" },
+  "andhra-pradesh":{ name: "Andhra Pradesh",   city: "Amaravati",          mult: 1.25,  serviceable: true,  shop: "Vizag Vines" },
+  "uttar-pradesh":{ name: "Uttar Pradesh",     city: "Lucknow",            mult: 0.95,  serviceable: true,  shop: "Awadh Spirits" },
+  rajasthan:      { name: "Rajasthan",         city: "Jaipur",             mult: 1.00,  serviceable: true,  shop: "Pink City Wines" },
+  punjab:         { name: "Punjab",            city: "Chandigarh",         mult: 0.90,  serviceable: true,  shop: "Ludhiana Liquors" },
+  "west-bengal":  { name: "West Bengal",       city: "Kolkata",            mult: 1.05,  serviceable: true,  shop: "Park Street Cellars" },
+  "madhya-pradesh":{ name: "Madhya Pradesh",   city: "Bhopal",             mult: 1.05,  serviceable: true,  shop: "Bhopal Booze" },
+  goa:            { name: "Goa",               city: "Panaji",             mult: 0.55,  serviceable: true,  shop: "Baga Beach Bar Store" },
+  himachal:       { name: "Himachal Pradesh",  city: "Shimla",             mult: 0.85,  serviceable: true,  shop: "Shimla Spirits" },
+  chandigarh:     { name: "Chandigarh",        city: "Chandigarh",         mult: 0.80,  serviceable: true,  shop: "Sector 17 Wines" },
+  puducherry:     { name: "Puducherry",        city: "Puducherry",         mult: 0.60,  serviceable: true,  shop: "White Town Wines" },
+  uttarakhand:    { name: "Uttarakhand",       city: "Dehradun",           mult: 0.92,  serviceable: true,  shop: "Doon Cellars" },
+  // Dry states — delivery prohibited
+  gujarat:        { name: "Gujarat",           city: "Gandhinagar",        mult: 1.0,   serviceable: false, shop: "—" },
+  bihar:          { name: "Bihar",             city: "Patna",              mult: 1.0,   serviceable: false, shop: "—" },
+  nagaland:       { name: "Nagaland",          city: "Kohima",             mult: 1.0,   serviceable: false, shop: "—" },
+  mizoram:        { name: "Mizoram",           city: "Aizawl",             mult: 1.0,   serviceable: false, shop: "—" },
 };
 
-// Base catalog (Delhi = 1.0). Each zone applies a price multiplier so the
-// SAME product costs a DIFFERENT amount per zone (e.g. Red Label 1800 vs 1200).
-type Base = Omit<Product, "price" | "mrp" | "stock" | "points_earned"> & {
+export const ZONES: Zone[] = Object.entries(ZONE_DEFS).map(([slug, d], i) => ({
+  id: String(i + 1),
+  name: d.name,
+  slug,
+  city: d.city,
+  serviceable: d.serviceable,
+}));
+
+export const ZONE_SHOP: Record<string, string> = Object.fromEntries(
+  Object.entries(ZONE_DEFS).map(([slug, d]) => [slug, d.shop]),
+);
+
+// Base catalog (Delhi = baseline). Each state applies its multiplier.
+type Base = Omit<Product, "price" | "mrp" | "stock" | "points_earned" | "is_serviceable"> & {
   base: number;
   mrp: number;
   stock: number;
@@ -36,16 +60,10 @@ const BASE: Base[] = [
   { id: "j", name: "Jack Daniel's No.7", brand: "Jack Daniel's", category: "whisky", volume_ml: 750, pairs_with: "BBQ 🍖", base: 2800, mrp: 3000, stock: 4 },
 ];
 
-const ZONE_MULT: Record<string, number> = {
-  delhi: 1.0,
-  gurugram: 0.667, // Red Label ~ 1200
-  noida: 0.9,
-  bengaluru: 1.1,
-  mumbai: 1.18,
-};
-
 function build(slug: string): Product[] {
-  const mult = ZONE_MULT[slug] ?? 1;
+  const def = ZONE_DEFS[slug];
+  const mult = def?.mult ?? 1;
+  const serviceable = def?.serviceable ?? true;
   return BASE.map((b, idx) => {
     const price = Math.round((b.base * mult) / 10) * 10;
     return {
@@ -57,8 +75,8 @@ function build(slug: string): Product[] {
       pairs_with: b.pairs_with,
       price,
       mrp: b.mrp,
-      // vary stock a little per zone so "Only N left!" differs
-      stock: Math.max(0, b.stock - (idx % 3) * (slug === "gurugram" ? 4 : 1)),
+      stock: Math.max(0, b.stock - (idx % 3)),
+      is_serviceable: serviceable,
       points_earned: Math.floor(price / 10),
     };
   });
