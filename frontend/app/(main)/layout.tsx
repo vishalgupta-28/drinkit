@@ -4,6 +4,7 @@ import { BottomNav } from "@/components/layout/BottomNav";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { AgeGate } from "@/components/shared/AgeGate";
 import { Toaster } from "@/components/shared/Toaster";
+import { CursorGlitter } from "@/components/shared/CursorGlitter";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <CartSheet />
       <BottomNav />
       <Toaster />
+      <CursorGlitter />
     </div>
   );
 }

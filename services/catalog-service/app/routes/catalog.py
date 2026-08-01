@@ -34,7 +34,9 @@ async def list_products(
         JOIN zone_prices zp ON zp.product_id = p.id
         JOIN zones z ON z.id = zp.zone_id
         WHERE z.slug = :zone
-          AND (:category IS NULL OR p.category = :category)
+          -- explicit ::text cast: asyncpg can't infer the type of a bare
+          -- parameter used as ":category IS NULL" (AmbiguousParameterError)
+          AND (CAST(:category AS text) IS NULL OR p.category = CAST(:category AS text))
         ORDER BY p.name
         """
     )

@@ -9,6 +9,7 @@ node_modules/
 out/
 dist/
 build/
+*.tsbuildinfo
 npm-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
@@ -36,3 +37,4 @@ Thumbs.db
 # Local agent tooling (not part of the app)
 .agents/
 skills-lock.json
+.mcp.json
