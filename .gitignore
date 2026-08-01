@@ -9,6 +9,7 @@ node_modules/
 out/
 dist/
 build/
+*.tsbuildinfo
 npm-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
