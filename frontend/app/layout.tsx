@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -20,6 +21,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Providers>{children}</Providers>
+
+        {/* UserAccess accessibility widget (third-party) */}
+        <Script
+          src="https://widget-v1.useraccess.live/"
+          strategy="afterInteractive"
+          data-asw-lang="en"
+          data-asw-position="bottom-right"
+          data-asw-icon-type="m-full"
+        />
       </body>
     </html>
   );
