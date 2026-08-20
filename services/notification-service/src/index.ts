@@ -44,8 +44,18 @@ async function consumeEvents() {
     ch.consume(q.queue, (msg) => {
       if (!msg) return;
       const routingKey = msg.fields.routingKey;
-      const payload = JSON.parse(msg.content.toString());
-      const orderId = payload.orderId ?? payload.id;
+      const raw = msg.content.toString();
+      // A malformed message must NEVER crash the service. Parse defensively,
+      // ack it so it doesn't requeue forever, and move on.
+      let payload: any;
+      try {
+        payload = JSON.parse(raw);
+      } catch {
+        console.warn(`skipping non-JSON message on "${routingKey}": ${raw.slice(0, 80)}`);
+        ch.ack(msg);
+        return;
+      }
+      const orderId = payload?.orderId ?? payload?.id;
       if (orderId) io.to(`order:${orderId}`).emit(routingKey, payload);
       ch.ack(msg);
     });
