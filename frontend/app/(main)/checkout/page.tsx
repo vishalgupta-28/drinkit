@@ -98,6 +98,7 @@ export default function CheckoutPage() {
     const pts = pointsPreview();
     api
       .post("/orders", {
+        orderId, // same id the tracking page will subscribe to
         zone: zone.slug,
         items: items.map((i) => ({ productId: i.product.id, qty: i.qty })),
         total,

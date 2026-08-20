@@ -32,9 +32,25 @@ io.on("connection", (socket) => {
 });
 
 // Consume order/rider events from RabbitMQ and fan out over WebSocket
+let reconnecting = false;
 async function consumeEvents() {
   try {
     const conn = await amqp.connect(RABBIT);
+
+    // If the connection drops, the exclusive queue + its bindings are destroyed.
+    // Re-run setup so we never go silently deaf (this was a real bug).
+    const reconnect = () => {
+      if (reconnecting) return;
+      reconnecting = true;
+      console.warn("rabbitmq connection lost — re-subscribing in 3s");
+      setTimeout(() => {
+        reconnecting = false;
+        consumeEvents();
+      }, 3000);
+    };
+    conn.on("close", reconnect);
+    conn.on("error", reconnect);
+
     const ch = await conn.createChannel();
     await ch.assertExchange("drinkit.events", "topic", { durable: true });
     const q = await ch.assertQueue("", { exclusive: true });
