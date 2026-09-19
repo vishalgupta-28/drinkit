@@ -1,26 +1,19 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, EmailStr, Field
-import hashlib
+from sqlalchemy import text
+from sqlalchemy.ext.asyncio import AsyncSession
+from jose import JWTError
 import random
 
+from ..db import get_db
+from ..security import hash_password, verify_password, create_access_token, decode_token
+
 router = APIRouter(prefix="/auth", tags=["auth"])
-
-# In-memory stores for the scaffold. Swap for Postgres + bcrypt + real JWTs.
-_OTP_STORE: dict[str, str] = {}
-_USERS: dict[str, dict] = {}  # email -> {name, pw_hash}
+bearer = HTTPBearer(auto_error=True)
 
 
-def _hash(pw: str) -> str:
-    # Placeholder hashing. Use passlib/bcrypt in production.
-    return hashlib.sha256(pw.encode()).hexdigest()
-
-
-def _token(email: str) -> str:
-    # Placeholder token. Mint a signed JWT (python-jose) in production.
-    return f"dev-token-{_hash(email)[:24]}"
-
-
-# ── Email auth ────────────────────────────────────────────────
+# ── Schemas ───────────────────────────────────────────────────
 class SignupIn(BaseModel):
     name: str = Field(..., min_length=1)
     email: EmailStr
@@ -32,25 +25,69 @@ class LoginIn(BaseModel):
     password: str
 
 
-@router.post("/signup")
-async def signup(body: SignupIn):
+class TokenOut(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    name: str
+
+
+# ── Email auth (bcrypt + Postgres + signed JWT) ───────────────
+@router.post("/signup", response_model=TokenOut)
+async def signup(body: SignupIn, db: AsyncSession = Depends(get_db)):
     email = body.email.lower()
-    if email in _USERS:
+    exists = (await db.execute(text("SELECT 1 FROM users WHERE lower(email) = :e"), {"e": email})).first()
+    if exists:
         raise HTTPException(409, "An account with this email already exists")
-    _USERS[email] = {"name": body.name, "pw_hash": _hash(body.password)}
-    return {"access_token": _token(email), "token_type": "bearer", "name": body.name}
+
+    row = (
+        await db.execute(
+            text(
+                "INSERT INTO users (email, name, password_hash) "
+                "VALUES (:e, :n, :p) RETURNING id"
+            ),
+            {"e": email, "n": body.name, "p": hash_password(body.password)},
+        )
+    ).first()
+    await db.commit()
+
+    token = create_access_token(str(row[0]), {"email": email, "name": body.name})
+    return TokenOut(access_token=token, name=body.name)
 
 
-@router.post("/login")
-async def login(body: LoginIn):
+@router.post("/login", response_model=TokenOut)
+async def login(body: LoginIn, db: AsyncSession = Depends(get_db)):
     email = body.email.lower()
-    user = _USERS.get(email)
-    if not user or user["pw_hash"] != _hash(body.password):
+    row = (
+        await db.execute(
+            text("SELECT id, name, password_hash FROM users WHERE lower(email) = :e"),
+            {"e": email},
+        )
+    ).first()
+    if not row or not verify_password(body.password, row[2]):
         raise HTTPException(401, "Invalid email or password")
-    return {"access_token": _token(email), "token_type": "bearer", "name": user["name"]}
+
+    token = create_access_token(str(row[0]), {"email": email, "name": row[1]})
+    return TokenOut(access_token=token, name=row[1])
 
 
-# ── Phone OTP (kept for optional mobile login) ────────────────
+# ── Token verification (reusable dependency for any service) ──
+async def current_user(creds: HTTPAuthorizationCredentials = Depends(bearer)) -> dict:
+    try:
+        return decode_token(creds.credentials)  # verifies signature + expiry
+    except JWTError:
+        raise HTTPException(401, "Invalid or expired token")
+
+
+@router.get("/me")
+async def me(user: dict = Depends(current_user)):
+    """Protected endpoint — proves the JWT is actually verified."""
+    return {"id": user.get("sub"), "email": user.get("email"), "name": user.get("name")}
+
+
+# ── Phone OTP (optional; now issues a real JWT too) ───────────
+_OTP_STORE: dict[str, str] = {}
+
+
 class PhoneIn(BaseModel):
     phone: str = Field(..., examples=["+919811100000"])
 
@@ -64,13 +101,13 @@ class VerifyIn(BaseModel):
 async def request_otp(body: PhoneIn):
     otp = f"{random.randint(0, 999999):06d}"
     _OTP_STORE[body.phone] = otp
-    # TODO: send via Twilio. For dev we return it.
-    return {"sent": True, "debug_otp": otp}
+    return {"sent": True, "debug_otp": otp}  # TODO: send via Twilio
 
 
-@router.post("/otp/verify")
+@router.post("/otp/verify", response_model=TokenOut)
 async def verify_otp(body: VerifyIn):
     if _OTP_STORE.get(body.phone) != body.otp:
         raise HTTPException(401, "Invalid OTP")
     _OTP_STORE.pop(body.phone, None)
-    return {"access_token": f"dev-token-{body.phone}", "token_type": "bearer"}
+    token = create_access_token(body.phone, {"phone": body.phone})
+    return TokenOut(access_token=token, name=body.phone)
